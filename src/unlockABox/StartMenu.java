@@ -70,19 +70,22 @@ public class StartMenu extends JFrame
 		
 		JPanel pnlStartMenu = new JPanel();
 		contentPane.add(pnlStartMenu, BorderLayout.CENTER);
-		pnlStartMenu.setLayout(new GridLayout(4, 0, 0, 0));
+		pnlStartMenu.setLayout(new GridLayout(5, 0, 0, 0));
 		
 		JLabel lblTitle = new JLabel("Unlock A Box");
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		pnlStartMenu.add(lblTitle);
 		
 		JButton btnNewGame = new JButton("New Game");
+		btnNewGame.setFocusable(false);
 		pnlStartMenu.add(btnNewGame);
 		
 		JButton btnLoadGame = new JButton("Load Game");
+		btnLoadGame.setFocusable(false);
 		pnlStartMenu.add(btnLoadGame);
 		
 		JButton btnHelp = new JButton("Help");
+		btnHelp.setFocusable(false);
 		pnlStartMenu.add(btnHelp);
 		
 		
