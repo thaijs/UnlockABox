@@ -85,10 +85,13 @@ public class LevelGUI extends JFrame
 		contentPane.add(pnlLevels, BorderLayout.CENTER);
 		pnlLevels.setLayout(new GridLayout(2, 0, 0, 0));
 		
-		JLabel lblDifficultyTitle = new JLabel("Selected Difficulty (Easy...Medium...Hard...)");
-		lblDifficultyTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		//This needs to somehow get the selected difficulty from user selection
-		pnlLevels.add(lblDifficultyTitle);
+		/*
+		 * May or may not use this
+		 */
+//		JLabel lblDifficultyTitle = new JLabel("Selected Difficulty (Easy...Medium...Hard...)");
+//		lblDifficultyTitle.setHorizontalAlignment(SwingConstants.CENTER);
+//		//This needs to somehow get the selected difficulty from user selection
+//		pnlLevels.add(lblDifficultyTitle);
 		
 		JPanel pnlGameLevels = new JPanel();
 		pnlLevels.add(pnlGameLevels);
