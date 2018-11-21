@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 
-public class Levels extends JFrame
+public class LevelGUI extends JFrame
 {
 
 	private JPanel contentPane;
@@ -30,7 +30,7 @@ public class Levels extends JFrame
 			{
 				try
 				{
-					Levels frame = new Levels();
+					LevelGUI frame = new LevelGUI();
 					frame.setVisible(true);
 				} catch (Exception e)
 				{
@@ -43,7 +43,7 @@ public class Levels extends JFrame
 	/**
 	 * Create the frame.
 	 */
-	public Levels() {
+	public LevelGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 530);
 		contentPane = new JPanel();

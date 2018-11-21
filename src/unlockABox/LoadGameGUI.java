@@ -20,7 +20,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.ButtonGroup;
 
-public class LoadGame extends JFrame
+public class LoadGameGUI extends JFrame
 {
 
 	private JPanel contentPane;
@@ -37,7 +37,7 @@ public class LoadGame extends JFrame
 			{
 				try
 				{
-					LoadGame frame = new LoadGame();
+					LoadGameGUI frame = new LoadGameGUI();
 					frame.setVisible(true);
 				} catch (Exception e)
 				{
@@ -50,7 +50,7 @@ public class LoadGame extends JFrame
 	/**
 	 * Create the frame.
 	 */
-	public LoadGame() {
+	public LoadGameGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 530);
 		contentPane = new JPanel();
@@ -95,6 +95,7 @@ public class LoadGame extends JFrame
 		 * takes in player name?
 		 * need to somehow link name from New Game jFrame
 		 */
+		System.out.println("Type Name: ");
 		Scanner sc = new Scanner(System.in);
 		String saveName = sc.nextLine();
 		

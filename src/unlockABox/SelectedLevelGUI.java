@@ -9,17 +9,15 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
+import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.GridLayout;
-import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-public class Challenge extends JFrame
+public class SelectedLevelGUI extends JFrame
 {
 
 	private JPanel contentPane;
-	private JTextField txtBoxGetUserInput;
 
 	/**
 	 * Launch the application.
@@ -32,7 +30,7 @@ public class Challenge extends JFrame
 			{
 				try
 				{
-					Challenge frame = new Challenge();
+					SelectedLevelGUI frame = new SelectedLevelGUI();
 					frame.setVisible(true);
 				} catch (Exception e)
 				{
@@ -45,11 +43,10 @@ public class Challenge extends JFrame
 	/**
 	 * Create the frame.
 	 */
-	public Challenge() {
+	public SelectedLevelGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 530);
 		contentPane = new JPanel();
-		contentPane.setToolTipText("");
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
@@ -78,36 +75,32 @@ public class Challenge extends JFrame
 		JMenuItem mntmExit = new JMenuItem("Exit");
 		mnMenu.add(mntmExit);
 		
-		JPanel pnlAnswer = new JPanel();
-		contentPane.add(pnlAnswer, BorderLayout.SOUTH);
+		JPanel pnlLevelSelected = new JPanel();
+		contentPane.add(pnlLevelSelected, BorderLayout.CENTER);
+		pnlLevelSelected.setLayout(new GridLayout(2, 0, 0, 0));
+		
+		JLabel lblLevelSelected = new JLabel("Level that was selected");
+		lblLevelSelected.setHorizontalAlignment(SwingConstants.CENTER);
+		//Needs to get which level was selected (1,2,3,4...)
+		pnlLevelSelected.add(lblLevelSelected);
+		
+		JPanel pnlChallenges = new JPanel();
+		pnlLevelSelected.add(pnlChallenges);
 		
 		/*
-		 * These will be hardcoded and changed according to the challenge
+		 * For final project, need to make these buttons images with label on top
 		 */
-		txtBoxGetUserInput = new JTextField();
-		txtBoxGetUserInput.setActionCommand("");
-		txtBoxGetUserInput.setName("");
-		txtBoxGetUserInput.setToolTipText("Input Answer");
-		pnlAnswer.add(txtBoxGetUserInput);
-		txtBoxGetUserInput.setColumns(10);
+		JButton btnChallenge1 = new JButton("Name of Challenge");
+		btnChallenge1.setFocusable(false);
+		pnlChallenges.add(btnChallenge1);
 		
-		JButton btnSubmit = new JButton("Submit");
-		btnSubmit.setFocusable(false);
-		pnlAnswer.add(btnSubmit);
+		JButton btnChallenge2 = new JButton("Name of Challenge");
+		btnChallenge2.setFocusable(false);
+		pnlChallenges.add(btnChallenge2);
 		
-		JPanel pnlChallenge = new JPanel();
-		contentPane.add(pnlChallenge, BorderLayout.CENTER);
-		pnlChallenge.setLayout(new GridLayout(2, 0, 0, 0));
-		
-		JLabel lblQuestion = new JLabel("Question for the challenge");
-		lblQuestion.setHorizontalAlignment(SwingConstants.CENTER);
-		//hardcoded
-		pnlChallenge.add(lblQuestion);
-		
-		JLabel lblPicture = new JLabel("Picture for challenge");
-		lblPicture.setHorizontalAlignment(SwingConstants.CENTER);
-		//hardcoded
-		pnlChallenge.add(lblPicture);
+		JButton btnChallenge3 = new JButton("Name of Challenge");
+		btnChallenge3.setFocusable(false);
+		pnlChallenges.add(btnChallenge3);
 	}
 
 }

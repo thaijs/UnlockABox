@@ -18,7 +18,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
-public class StartMenu extends JFrame
+public class StartMenuGUI extends JFrame
 {
 
 	private JPanel contentPane;
@@ -34,7 +34,7 @@ public class StartMenu extends JFrame
 			{
 				try
 				{
-					StartMenu frame = new StartMenu();
+					StartMenuGUI frame = new StartMenuGUI();
 					frame.setVisible(true);
 				} catch (Exception e)
 				{
@@ -47,7 +47,7 @@ public class StartMenu extends JFrame
 	/**
 	 * Create the frame.
 	 */
-	public StartMenu() {
+	public StartMenuGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 530);
 		contentPane = new JPanel();

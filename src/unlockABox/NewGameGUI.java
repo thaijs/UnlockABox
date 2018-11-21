@@ -16,7 +16,7 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
 
-public class NewGame extends JFrame
+public class NewGameGUI extends JFrame
 {
 
 	private JPanel contentPane;
@@ -33,7 +33,7 @@ public class NewGame extends JFrame
 			{
 				try
 				{
-					NewGame frame = new NewGame();
+					NewGameGUI frame = new NewGameGUI();
 					frame.setVisible(true);
 				} catch (Exception e)
 				{
@@ -46,7 +46,7 @@ public class NewGame extends JFrame
 	/**
 	 * Create the frame.
 	 */
-	public NewGame() {
+	public NewGameGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 530);
 		contentPane = new JPanel();
