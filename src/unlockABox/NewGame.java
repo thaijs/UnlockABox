@@ -54,11 +54,11 @@ public class NewGame extends JFrame
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		JPanel panel = new JPanel();
-		contentPane.add(panel, BorderLayout.NORTH);
+		JPanel pnlMenu = new JPanel();
+		contentPane.add(pnlMenu, BorderLayout.NORTH);
 		
 		JMenuBar menuBar = new JMenuBar();
-		panel.add(menuBar);
+		pnlMenu.add(menuBar);
 		
 		JMenu mnMenu = new JMenu("Menu");
 		menuBar.add(mnMenu);
@@ -100,6 +100,7 @@ public class NewGame extends JFrame
 		txtBoxName.setColumns(10);
 		
 		JButton btnPlay = new JButton("PLAY");
+		btnPlay.setFocusable(false);
 		pnlNewGame.add(btnPlay);
 	}
 
