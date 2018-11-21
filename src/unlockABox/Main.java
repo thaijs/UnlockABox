@@ -7,8 +7,10 @@ public class Main
 
 	public static void main(String[] args)
 	{
-		ArrayList listd = new ArrayList();
-		listd.add("Bonzai");
+		//ArrayList listd = new ArrayList();
+		//listd.add("Bonzai");
+		
+		
 		
 		
 		
