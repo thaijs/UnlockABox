@@ -5,7 +5,7 @@ public class Main
 
 	public static void main(String[] args)
 	{
-		//Level Beavis = new Level(Difficulty.EASY.toString(), )
+		System.out.println("What up Homie!");
 
 	}
 
