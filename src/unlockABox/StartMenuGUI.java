@@ -41,7 +41,7 @@ public class StartMenuGUI extends JFrame
 					e.printStackTrace();
 				}
 			}
-		});
+		});		
 	}
 
 	/**
@@ -86,9 +86,7 @@ public class StartMenuGUI extends JFrame
 		
 		JButton btnHelp = new JButton("Help");
 		btnHelp.setFocusable(false);
-		pnlStartMenu.add(btnHelp);
-		
-		
+		pnlStartMenu.add(btnHelp);		
 	}
 
 }
