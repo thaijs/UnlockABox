@@ -50,6 +50,7 @@ public class NewGameGUI extends JFrame
 	 */
 	public NewGameGUI()
 	{
+		setTitle("Unlock A Box");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 530);
 		contentPane = new JPanel();
@@ -69,8 +70,8 @@ public class NewGameGUI extends JFrame
 		JMenuItem mntmLoadGame = new JMenuItem("Load Game");
 		mnMenu.add(mntmLoadGame);
 
-		JMenuItem mntmHelp = new JMenuItem("Help");
-		mnMenu.add(mntmHelp);
+//		JMenuItem mntmHelp = new JMenuItem("Help");
+//		mnMenu.add(mntmHelp);
 
 		JMenuItem mntmBack = new JMenuItem("Back");
 		mnMenu.add(mntmBack);
@@ -89,8 +90,7 @@ public class NewGameGUI extends JFrame
 		pnlDifficulty.add(lblSelectDifficulty);
 
 		JComboBox comboBoxDifficulty = new JComboBox();
-		comboBoxDifficulty.setModel(new DefaultComboBoxModel(new String[]
-		{ "Select One", "Easy", "Medium", "Hard" }));
+		comboBoxDifficulty.setModel(new DefaultComboBoxModel(new String[] { "Select One", "Easy", "Medium", "Hard" }));
 		pnlDifficulty.add(comboBoxDifficulty);
 
 		JPanel pnlName = new JPanel();
@@ -111,8 +111,20 @@ public class NewGameGUI extends JFrame
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
+				/**
+				 * Create an instance of newLevel, this allows the LevelGUI to pop up when new
+				 * is selected in the start menu
+				 */
 				LevelGUI newLevel = new LevelGUI();
 				newLevel.setVisible(true);
+				
+				
+				/**
+				 * setVisible without object name (newGame.setVisible...) will use Class (StartMenuGUI.java) that the command was coded in
+				 * dispose() will free up memory in program by removing the instantiation of StartMenuGUI
+				 */
+				setVisible(false);
+				dispose();	
 			}
 		});
 	}

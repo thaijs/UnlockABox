@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.GridLayout;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class SelectedLevelGUI extends JFrame
 {
@@ -44,6 +46,7 @@ public class SelectedLevelGUI extends JFrame
 	 * Create the frame.
 	 */
 	public SelectedLevelGUI() {
+		setTitle("Unlock A Box");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 530);
 		contentPane = new JPanel();
@@ -66,8 +69,8 @@ public class SelectedLevelGUI extends JFrame
 		JMenuItem mntmLoadGame = new JMenuItem("Load Game");
 		mnMenu.add(mntmLoadGame);
 		
-		JMenuItem mntmHelp = new JMenuItem("Help");
-		mnMenu.add(mntmHelp);
+//		JMenuItem mntmHelp = new JMenuItem("Help");
+//		mnMenu.add(mntmHelp);
 		
 		JMenuItem mntmBack = new JMenuItem("Back");
 		mnMenu.add(mntmBack);
@@ -89,8 +92,10 @@ public class SelectedLevelGUI extends JFrame
 		
 		/*
 		 * For final project, need to make these buttons images with label on top
+		 * Need to get Main class to input for btn's
 		 */
-		JButton btnChallenge1 = new JButton("Name of Challenge");
+		String name = "";
+		JButton btnChallenge1 = new JButton("Name of Challenge" + nameForChallenge(name));
 		btnChallenge1.setFocusable(false);
 		pnlChallenges.add(btnChallenge1);
 		
@@ -101,6 +106,38 @@ public class SelectedLevelGUI extends JFrame
 		JButton btnChallenge3 = new JButton("Name of Challenge");
 		btnChallenge3.setFocusable(false);
 		pnlChallenges.add(btnChallenge3);
+		
+		/*
+		 * Button Challenge 1 creates an instance of ChallengeGUI allowing the GUI to pop up
+		 */
+		btnChallenge1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				/**
+				 * Create an instance of challenge, this allows the ChallengeGUI to pop up when new
+				 * is selected in the start menu
+				 */
+				ChallengeGUI challenge = new ChallengeGUI();
+				challenge.setVisible(true);
+				
+				/**
+				 * setVisible without object name (newGame.setVisible...) will use Class (StartMenuGUI.java) that the command was coded in
+				 * dispose() will free up memory in program by removing the instantiation of StartMenuGUI
+				 */
+				setVisible(false);
+				dispose();	
+			}
+		});
+	}
+	
+	/**
+	 * Allows Main class to hard code name for challenge
+	 * @param name
+	 * @return
+	 */
+	public String nameForChallenge(String name)
+	{
+		return name;
 	}
 
 }

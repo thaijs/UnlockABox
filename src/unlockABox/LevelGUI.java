@@ -13,6 +13,8 @@ import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class LevelGUI extends JFrame
 {
@@ -44,6 +46,7 @@ public class LevelGUI extends JFrame
 	 * Create the frame.
 	 */
 	public LevelGUI() {
+		setTitle("Unlock A Box");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 530);
 		contentPane = new JPanel();
@@ -60,11 +63,14 @@ public class LevelGUI extends JFrame
 		JMenu mnMenu = new JMenu("Menu");
 		menuBar.add(mnMenu);
 		
+		JMenuItem mntmSaveGame = new JMenuItem("Save Game");
+		mnMenu.add(mntmSaveGame);
+		
 		JMenuItem mntmNewGame = new JMenuItem("Load Game");
 		mnMenu.add(mntmNewGame);
 		
-		JMenuItem mntmHelp = new JMenuItem("Help");
-		mnMenu.add(mntmHelp);
+//		JMenuItem mntmHelp = new JMenuItem("Help");
+//		mnMenu.add(mntmHelp);
 		
 		JMenuItem mntmEasy = new JMenuItem("Easy Levels");
 		mnMenu.add(mntmEasy);
@@ -86,7 +92,11 @@ public class LevelGUI extends JFrame
 		pnlLevels.setLayout(new GridLayout(2, 0, 0, 0));
 		
 		/*
+<<<<<<< HEAD
+		 * May or may not use it
+=======
 		 * May or may not use this
+>>>>>>> refs/remotes/origin/master
 		 */
 //		JLabel lblDifficultyTitle = new JLabel("Selected Difficulty (Easy...Medium...Hard...)");
 //		lblDifficultyTitle.setHorizontalAlignment(SwingConstants.CENTER);
@@ -132,6 +142,28 @@ public class LevelGUI extends JFrame
 		JButton btnLvl9 = new JButton("9");
 		btnLvl9.setFocusable(false);
 		pnlGameLevels.add(btnLvl9);
+		
+		/*
+		 * Button Level 1 creates an instance of SelectedLevelGUI allowing the GUI to pop up
+		 */
+		btnLvl1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				/**
+				 * Create an instance of selectedLevel, this allows the SelectedLevelGUI to pop up when new
+				 * is selected in the start menu
+				 */
+				SelectedLevelGUI selectedLevel = new SelectedLevelGUI();
+				selectedLevel.setVisible(true);
+				
+				/**
+				 * setVisible without object name (newGame.setVisible...) will use Class (StartMenuGUI.java) that the command was coded in
+				 * dispose() will free up memory in program by removing the instantiation of StartMenuGUI
+				 */
+				setVisible(false);
+				dispose();	
+			}
+		});
 		
 		
 	}
