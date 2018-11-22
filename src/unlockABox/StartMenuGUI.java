@@ -133,35 +133,6 @@ public class StartMenuGUI extends JFrame
 											}
 										});
 										btnHelp.setFocusable(false);
-		
-
-		JButton btnNewGame = new JButton("New Game");
-		btnNewGame.setFocusable(false);
-		pnlStartMenu.add(btnNewGame);
-
-		JButton btnLoadGame = new JButton("Load Game");
-		btnLoadGame.setFocusable(false);
-		pnlStartMenu.add(btnLoadGame);
-
-		JButton btnHelp = new JButton("Help");
-
-		Help help = new Help("Directions", "Unlock A Box is a game of brain teasers and logic puzzles.\r\n" + "\r\n"
-				+ "Creating a New Game!\r\n" + "Create a new game by selecting New Game\r\n"
-				+ "Choose a difficulty level with the dropdown menu\r\n" + "Input your username\r\n" + "Click Play\r\n"
-				+ "\r\n" + "Loading a Saved Game!\r\n" + "Load a new game by selecting Load Game\r\n"
-				+ "Select your saved game by your Username\r\n" + "Click Load\r\n" + "\r\n" + "In Game!\r\n"
-				+ "You will be presented with a challenge that includes a puzzle that needs to be solved\r\n"
-				+ "Once you have solved all three challenges the level will be complete");
-		btnHelp.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e)
-			{
-				help.setVisible(true);
-			}
-		});
-		btnHelp.setFocusable(false);
-		pnlStartMenu.add(btnHelp);
-
 
 		btnNewGame.addActionListener(new ActionListener()
 		{
