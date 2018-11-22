@@ -10,7 +10,7 @@ public class Challenge
 	private String answer;
 	//for testing purposes
 	private boolean answerFlag;
-	private String box;
+	private String image;
 	private String hint;
 	
 	/**
@@ -22,14 +22,24 @@ public class Challenge
 	 * @param b
 	 * @param h
 	 */
-	public Challenge(String n, String d, String a, boolean af, String b, String h)
+	public Challenge(String n, String d, String a, boolean af, String i, String h)
 	{
 		name = n;
 		description = d;
 		answer = a;
 		answerFlag = af;
-		box = b;
+		image = i;
 		hint = h;
+	}
+
+	public String getAnswer()
+	{
+		return answer;
+	}
+
+	public void setAnswer(String answer)
+	{
+		this.answer = answer;
 	}
 
 	/**
@@ -72,9 +82,9 @@ public class Challenge
 	 * Get data in parameter box
 	 * @return
 	 */
-	public String getBox()
+	public String getImage()
 	{
-		return box;
+		return image;
 	}
 	
 	/**
@@ -83,7 +93,7 @@ public class Challenge
 	 */
 	public void setBox(String box)
 	{
-		this.box = box;
+		this.image = image;
 	}
 	
 	/**
@@ -91,9 +101,9 @@ public class Challenge
 	 * @param h
 	 * @return
 	 */
-	public String createHint(String h)
+	public String getHint()
 	{
-		return h;
+		return hint;
 	}
 	
 	/**
