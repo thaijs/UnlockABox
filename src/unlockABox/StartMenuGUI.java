@@ -28,7 +28,7 @@ public class StartMenuGUI extends JFrame
 {
 
 	private JPanel contentPane;
-	
+
 	/**
 	 * Launch the application.
 	 */
@@ -48,7 +48,7 @@ public class StartMenuGUI extends JFrame
 				}
 			}
 
-		});		
+		});
 	}
 
 	/**
@@ -56,7 +56,7 @@ public class StartMenuGUI extends JFrame
 	 */
 	public StartMenuGUI()
 	{
-		setTitle("Unlock A Box");
+		setTitle("Unlock A Box - Start Menu");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 878, 579);
 		contentPane = new JPanel();
@@ -76,6 +76,14 @@ public class StartMenuGUI extends JFrame
 
 		JMenuItem mntmExit = new JMenuItem("Exit");
 		mnMenu.add(mntmExit);
+
+		mntmExit.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				dispose();
+			}
+		});
 
 		JPanel pnlStartMenu = new JPanel();
 		contentPane.add(pnlStartMenu, BorderLayout.CENTER);
@@ -126,6 +134,35 @@ public class StartMenuGUI extends JFrame
 										});
 										btnHelp.setFocusable(false);
 		
+
+		JButton btnNewGame = new JButton("New Game");
+		btnNewGame.setFocusable(false);
+		pnlStartMenu.add(btnNewGame);
+
+		JButton btnLoadGame = new JButton("Load Game");
+		btnLoadGame.setFocusable(false);
+		pnlStartMenu.add(btnLoadGame);
+
+		JButton btnHelp = new JButton("Help");
+
+		Help help = new Help("Directions", "Unlock A Box is a game of brain teasers and logic puzzles.\r\n" + "\r\n"
+				+ "Creating a New Game!\r\n" + "Create a new game by selecting New Game\r\n"
+				+ "Choose a difficulty level with the dropdown menu\r\n" + "Input your username\r\n" + "Click Play\r\n"
+				+ "\r\n" + "Loading a Saved Game!\r\n" + "Load a new game by selecting Load Game\r\n"
+				+ "Select your saved game by your Username\r\n" + "Click Load\r\n" + "\r\n" + "In Game!\r\n"
+				+ "You will be presented with a challenge that includes a puzzle that needs to be solved\r\n"
+				+ "Once you have solved all three challenges the level will be complete");
+		btnHelp.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				help.setVisible(true);
+			}
+		});
+		btnHelp.setFocusable(false);
+		pnlStartMenu.add(btnHelp);
+
+
 		btnNewGame.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
@@ -136,13 +173,14 @@ public class StartMenuGUI extends JFrame
 				 */
 				NewGameGUI newGame = new NewGameGUI();
 				newGame.setVisible(true);
-				
+
 				/**
-				 * setVisible without object name (newGame.setVisible...) will use Class (StartMenuGUI.java) that the command was coded in
-				 * dispose() will free up memory in program by removing the instantiation of StartMenuGUI
+				 * setVisible without object name (newGame.setVisible...) will use Class
+				 * (StartMenuGUI.java) that the command was coded in dispose() will free up
+				 * memory in program by removing the instantiation of StartMenuGUI
 				 */
 				setVisible(false);
-				dispose();				
+				dispose();
 			}
 		});
 
