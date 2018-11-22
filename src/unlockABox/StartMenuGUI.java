@@ -21,6 +21,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
+import java.awt.FlowLayout;
 
 public class StartMenuGUI extends JFrame
 {
@@ -56,7 +58,7 @@ public class StartMenuGUI extends JFrame
 	{
 		setTitle("Unlock A Box");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 900, 530);
+		setBounds(100, 100, 878, 579);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -77,21 +79,12 @@ public class StartMenuGUI extends JFrame
 
 		JPanel pnlStartMenu = new JPanel();
 		contentPane.add(pnlStartMenu, BorderLayout.CENTER);
-		pnlStartMenu.setLayout(new GridLayout(5, 0, 0, 0));
+		pnlStartMenu.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		JLabel lblTitle = new JLabel("Unlock A Box");
+		JLabel lblTitle = new JLabel("");
+		lblTitle.setIcon(new ImageIcon(StartMenuGUI.class.getResource("/images/UnlockABoxLogo.png")));
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		pnlStartMenu.add(lblTitle);
-
-		JButton btnNewGame = new JButton("New Game");
-		btnNewGame.setFocusable(false);
-		pnlStartMenu.add(btnNewGame);
-
-		JButton btnLoadGame = new JButton("Load Game");
-		btnLoadGame.setFocusable(false);
-		pnlStartMenu.add(btnLoadGame);
-		
-		JButton btnHelp = new JButton("Help");
 		
 		Help help = new Help("Directions", 
 				"Unlock A Box is a game of brain teasers and logic puzzles.\r\n" + 
@@ -110,14 +103,28 @@ public class StartMenuGUI extends JFrame
 				"In Game!\r\n" + 
 				"You will be presented with a challenge that includes a puzzle that needs to be solved\r\n" + 
 				"Once you have solved all three challenges the level will be complete");
-		btnHelp.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) 
-			{
-				help.setVisible(true);
-			}
-		});
-		btnHelp.setFocusable(false);
-		pnlStartMenu.add(btnHelp);		
+						
+						JPanel pnlStartButtons = new JPanel();
+						contentPane.add(pnlStartButtons, BorderLayout.SOUTH);
+						pnlStartButtons.setLayout(new GridLayout(3, 1, 0, 0));
+						
+								JButton btnNewGame = new JButton("New Game");
+								pnlStartButtons.add(btnNewGame);
+								btnNewGame.setFocusable(false);
+								
+										JButton btnLoadGame = new JButton("Load Game");
+										pnlStartButtons.add(btnLoadGame);
+										btnLoadGame.setFocusable(false);
+										
+										JButton btnHelp = new JButton("Help");
+										pnlStartButtons.add(btnHelp);
+										btnHelp.addActionListener(new ActionListener() {
+											public void actionPerformed(ActionEvent e) 
+											{
+												help.setVisible(true);
+											}
+										});
+										btnHelp.setFocusable(false);
 		
 		btnNewGame.addActionListener(new ActionListener()
 		{
