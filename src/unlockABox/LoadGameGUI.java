@@ -51,6 +51,7 @@ public class LoadGameGUI extends JFrame
 	 * Create the frame.
 	 */
 	public LoadGameGUI() {
+		setTitle("Unlock A Box - Load Game");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 530);
 		contentPane = new JPanel();
