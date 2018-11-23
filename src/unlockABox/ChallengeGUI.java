@@ -20,6 +20,8 @@ import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.util.Scanner;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ChallengeGUI extends JFrame
 {
@@ -154,8 +156,8 @@ public class ChallengeGUI extends JFrame
 		JPanel pnlTxtSubmit = new JPanel();
 		pnlInfo.add(pnlTxtSubmit);
 		txtBoxGetUserInput = new JTextField();
-
 		pnlTxtSubmit.add(txtBoxGetUserInput);
+		
 		txtBoxGetUserInput.setActionCommand("");
 		txtBoxGetUserInput.setName("");
 		txtBoxGetUserInput.setToolTipText("Input Answer");
@@ -213,6 +215,22 @@ public class ChallengeGUI extends JFrame
 				 */
 				setVisible(false);
 				dispose();
+			}
+		});
+		
+		/**
+		 * When user clicks on textbox after inputting data, textbox will clear previous input
+		 * Picture will default to original image for the challenge
+		 * Incorrect/Correct text will default to no text
+		 */
+		txtBoxGetUserInput.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) 
+			{
+				txtBoxGetUserInput.setText("");
+				valid.setText("");
+				lblPicture.setIcon(new ImageIcon(Challenge.class.getResource(lock.getImage())));
+				pnlChallenge.add(lblPicture);
 			}
 		});
 
