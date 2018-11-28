@@ -103,6 +103,7 @@ public class LoadGameGUI extends JFrame
 //		JRadioButton rdbtnNewRadioButton = new JRadioButton("New radio button");
 //		pnlSelectGames.add(rdbtnNewRadioButton);
 		
+		//this may need to be edited
 		JScrollPane scrollPane = new JScrollPane(addGameBtn(pnlSelectGames, saveName));	
 		pnlSelectGames.add(scrollPane);
 		
@@ -114,6 +115,7 @@ public class LoadGameGUI extends JFrame
 	/**
 	 *Creates a new radio button
 	 *Takes Name of player and applies to new radio button
+	 *saveName should be file path
 	 * @param panel
 	 * @param saveName
 	 * @return

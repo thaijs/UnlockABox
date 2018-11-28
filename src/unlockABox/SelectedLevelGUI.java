@@ -95,6 +95,8 @@ public class SelectedLevelGUI extends JFrame
 		contentPane.add(pnlLevelSelected, BorderLayout.CENTER);
 		pnlLevelSelected.setLayout(new GridLayout(2, 0, 0, 0));
 
+
+		//somehow get the challenge name and input into this label
 		JLabel lblLevelSelected = new JLabel("Level that was selected");
 		lblLevelSelected.setHorizontalAlignment(SwingConstants.CENTER);
 		// Needs to get which level was selected (1,2,3,4...)
@@ -108,7 +110,7 @@ public class SelectedLevelGUI extends JFrame
 		 * to get Main class to input for btn's
 		 */
 		String name = "";
-		JButton btnChallenge1 = new JButton("Lock Challenge"); //will update to ArrayList later and make name dynamic
+		JButton btnChallenge1 = new JButton(); //will update to ArrayList later and make name dynamic
 		btnChallenge1.setFocusable(false);
 		pnlChallenges.add(btnChallenge1);
 
