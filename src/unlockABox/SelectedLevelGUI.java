@@ -18,6 +18,10 @@ import java.awt.event.ActionEvent;
 
 public class SelectedLevelGUI extends JFrame
 {
+	static int switchVariable;
+	static String challengeButton1;
+	static String challengeButton2;
+	static String challengeButton3;
 
 	private JPanel contentPane;
 
@@ -95,8 +99,7 @@ public class SelectedLevelGUI extends JFrame
 		contentPane.add(pnlLevelSelected, BorderLayout.CENTER);
 		pnlLevelSelected.setLayout(new GridLayout(2, 0, 0, 0));
 
-
-		//somehow get the challenge name and input into this label
+		// somehow get the challenge name and input into this label
 		JLabel lblLevelSelected = new JLabel("Level that was selected");
 		lblLevelSelected.setHorizontalAlignment(SwingConstants.CENTER);
 		// Needs to get which level was selected (1,2,3,4...)
@@ -109,17 +112,36 @@ public class SelectedLevelGUI extends JFrame
 		 * For final project, need to make these buttons images with label on top Need
 		 * to get Main class to input for btn's
 		 */
+		switch (switchVariable)
+		{
+		case 1:
+			challengeButton1 = Main.easyChallenges.get(0).getName();
+			challengeButton2 = Main.easyChallenges.get(1).getName();
+			challengeButton3 = Main.easyChallenges.get(2).getName();
+			break;
+		case 2:
+			challengeButton1 = Main.mediumChallenges.get(0).getName();
+			challengeButton2 = Main.mediumChallenges.get(1).getName();
+			challengeButton3 = Main.mediumChallenges.get(2).getName();
+			break;
+		case 3:
+			challengeButton1 = Main.hardChallenges.get(0).getName();
+			challengeButton2 = Main.hardChallenges.get(1).getName();
+			challengeButton3 = Main.hardChallenges.get(2).getName();
+			break;
+		}
+
 		String name = "";
-		JButton btnChallenge1 = new JButton(); //will update to ArrayList later and make name dynamic
+		JButton btnChallenge1 = new JButton(challengeButton1); // will update to ArrayList later and make name dynamic
 		btnChallenge1.setFocusable(false);
 		pnlChallenges.add(btnChallenge1);
 
-		JButton btnChallenge2 = new JButton("Name of Challenge");
+		JButton btnChallenge2 = new JButton(challengeButton2);
 		btnChallenge2.setFocusable(false);
 		btnChallenge2.setEnabled(false);
 		pnlChallenges.add(btnChallenge2);
 
-		JButton btnChallenge3 = new JButton("Name of Challenge");
+		JButton btnChallenge3 = new JButton(challengeButton3);
 		btnChallenge3.setFocusable(false);
 		btnChallenge3.setEnabled(false);
 		pnlChallenges.add(btnChallenge3);

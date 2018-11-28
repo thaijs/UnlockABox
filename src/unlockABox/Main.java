@@ -36,6 +36,8 @@ public class Main
 						"/images/challengePic.png",
 						"Use Clues, we ain't tellin'"));
 		
+		
+		
 		//this is just adding the challenges we've created to the Lists
 		//create a method to do this maybe?
 //		Collections.addAll(easyChallenges, new Challenge("Heavier", 
