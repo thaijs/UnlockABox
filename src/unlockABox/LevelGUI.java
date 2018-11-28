@@ -15,6 +15,9 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.FlowLayout;
+import java.awt.Dimension;
+import javax.swing.ImageIcon;
 
 public class LevelGUI extends JFrame
 {
@@ -45,8 +48,7 @@ public class LevelGUI extends JFrame
 	/**
 	 * Create the frame.
 	 */
-	public LevelGUI()
-	{
+	public LevelGUI() {
 		setTitle("Unlock A Box - Level");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 530);
@@ -102,70 +104,90 @@ public class LevelGUI extends JFrame
 
 		JPanel pnlLevels = new JPanel();
 		contentPane.add(pnlLevels, BorderLayout.CENTER);
-		pnlLevels.setLayout(new GridLayout(2, 0, 0, 0));
+		pnlLevels.setLayout(new FlowLayout(FlowLayout.CENTER, 60, 170));
+		// JLabel lblDifficultyTitle = new JLabel("Selected Difficulty
+		// (Easy...Medium...Hard...)");
+		// lblDifficultyTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		// //This needs to somehow get the selected difficulty from user selection
+		// pnlLevels.add(lblDifficultyTitle);
+
+		// JPanel pnlGameLevels = new JPanel();
+		// pnlLevels.add(pnlGameLevels);
+		// pnlGameLevels.setLayout(new GridLayout(0, 3, 0, 0));
+
+		JButton btnEasy = new JButton("Easy");
+		pnlLevels.add(btnEasy);
+		btnEasy.setPreferredSize(new Dimension(200, 50));
+		btnEasy.setFocusable(false);
+
+		JButton btnMedium = new JButton("Medium");
+		pnlLevels.add(btnMedium);
+		btnMedium.setPreferredSize(new Dimension(200, 50));
+		btnMedium.setFocusable(false);
+//		btnMedium.setEnabled(false);
+
+		JButton btnHard = new JButton("Hard");
+		pnlLevels.add(btnHard);
+		btnHard.setPreferredSize(new Dimension(200, 50));
+		btnHard.setFocusable(false);
+//		btnHard.setEnabled(false);
 
 		/*
-		 * <<<<<<< HEAD May or may not use it ======= May or may not use this >>>>>>>
-		 * refs/remotes/origin/master
-		 */
-//		JLabel lblDifficultyTitle = new JLabel("Selected Difficulty (Easy...Medium...Hard...)");
-//		lblDifficultyTitle.setHorizontalAlignment(SwingConstants.CENTER);
-//		//This needs to somehow get the selected difficulty from user selection
-//		pnlLevels.add(lblDifficultyTitle);
-
-		JPanel pnlGameLevels = new JPanel();
-		pnlLevels.add(pnlGameLevels);
-		pnlGameLevels.setLayout(new GridLayout(0, 3, 0, 0));
-
-		JButton btnLvl1 = new JButton("1");
-		btnLvl1.setFocusable(false);
-		pnlGameLevels.add(btnLvl1);
-
-		JButton btnLvl2 = new JButton("2");
-		btnLvl2.setFocusable(false);
-		btnLvl2.setEnabled(false);
-		pnlGameLevels.add(btnLvl2);
-
-		JButton btnLvl3 = new JButton("3");
-		btnLvl3.setFocusable(false);
-		btnLvl3.setEnabled(false);
-		pnlGameLevels.add(btnLvl3);
-
-		JButton btnLvl4 = new JButton("4");
-		btnLvl4.setFocusable(false);
-		btnLvl4.setEnabled(false);
-		pnlGameLevels.add(btnLvl4);
-
-		JButton btnLvl5 = new JButton("5");
-		btnLvl5.setFocusable(false);
-		btnLvl5.setEnabled(false);
-		pnlGameLevels.add(btnLvl5);
-
-		JButton btnLvl6 = new JButton("6");
-		btnLvl6.setFocusable(false);
-		btnLvl6.setEnabled(false);
-		pnlGameLevels.add(btnLvl6);
-
-		JButton btnLvl7 = new JButton("7");
-		btnLvl7.setFocusable(false);
-		btnLvl7.setEnabled(false);
-		pnlGameLevels.add(btnLvl7);
-
-		JButton btnLvl8 = new JButton("8");
-		btnLvl8.setFocusable(false);
-		btnLvl8.setEnabled(false);
-		pnlGameLevels.add(btnLvl8);
-
-		JButton btnLvl9 = new JButton("9");
-		btnLvl9.setFocusable(false);
-		btnLvl9.setEnabled(false);
-		pnlGameLevels.add(btnLvl9);
-
-		/*
-		 * Button Level 1 creates an instance of SelectedLevelGUI allowing the GUI to
+		 * Button Easy creates an instance of SelectedLevelGUI allowing the GUI to
 		 * pop up
 		 */
-		btnLvl1.addActionListener(new ActionListener()
+		btnEasy.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				/**
+				 * Create an instance of selectedLevel, this allows the SelectedLevelGUI to pop
+				 * up when new is selected in the start menu
+				 */
+				SelectedLevelGUI selectedLevel = new SelectedLevelGUI();
+				selectedLevel.setVisible(true);
+
+				/**
+				 * setVisible without object name (newGame.setVisible...) will use Class
+				 * (StartMenuGUI.java) that the command was coded in dispose() will free up
+				 * memory in program by removing the instantiation of StartMenuGUI
+				 */
+				setVisible(false);
+				dispose();
+			}
+		});
+		
+		/*
+		 * Button Medium creates an instance of SelectedLevelGUI allowing the GUI to
+		 * pop up
+		 */
+		btnMedium.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				/**
+				 * Create an instance of selectedLevel, this allows the SelectedLevelGUI to pop
+				 * up when new is selected in the start menu
+				 */
+				SelectedLevelGUI selectedLevel = new SelectedLevelGUI();
+				selectedLevel.setVisible(true);
+//				selectedLevel
+
+				/**
+				 * setVisible without object name (newGame.setVisible...) will use Class
+				 * (StartMenuGUI.java) that the command was coded in dispose() will free up
+				 * memory in program by removing the instantiation of StartMenuGUI
+				 */
+				setVisible(false);
+				dispose();
+			}
+		});
+		
+		/*
+		 * Button Hard creates an instance of SelectedLevelGUI allowing the GUI to
+		 * pop up
+		 */
+		btnHard.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
@@ -187,5 +209,35 @@ public class LevelGUI extends JFrame
 		});
 
 	}
-
 }
+
+//these are for when we put levels inside of difficulties
+//JButton btnLvl4 = new JButton("4");
+//btnLvl4.setFocusable(false);
+//btnLvl4.setEnabled(false);
+//pnlGameLevels.add(btnLvl4);
+//
+//JButton btnLvl5 = new JButton("5");
+//btnLvl5.setFocusable(false);
+//btnLvl5.setEnabled(false);
+//pnlGameLevels.add(btnLvl5);
+//
+//JButton btnLvl6 = new JButton("6");
+//btnLvl6.setFocusable(false);
+//btnLvl6.setEnabled(false);
+//pnlGameLevels.add(btnLvl6);
+//
+//JButton btnLvl7 = new JButton("7");
+//btnLvl7.setFocusable(false);
+//btnLvl7.setEnabled(false);
+//pnlGameLevels.add(btnLvl7);
+//
+//JButton btnLvl8 = new JButton("8");
+//btnLvl8.setFocusable(false);
+//btnLvl8.setEnabled(false);
+//pnlGameLevels.add(btnLvl8);
+//
+//JButton btnLvl9 = new JButton("9");
+//btnLvl9.setFocusable(false);
+//btnLvl9.setEnabled(false);
+//pnlGameLevels.add(btnLvl9);
