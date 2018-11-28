@@ -23,12 +23,14 @@ public class LevelGUI extends JFrame
 {
 
 	private JPanel contentPane;
-
+	
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args)
 	{
+		
+
 		EventQueue.invokeLater(new Runnable()
 		{
 			public void run()
@@ -48,7 +50,8 @@ public class LevelGUI extends JFrame
 	/**
 	 * Create the frame.
 	 */
-	public LevelGUI() {
+	public LevelGUI()
+	{
 		setTitle("Unlock A Box - Level");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 530);
@@ -133,8 +136,8 @@ public class LevelGUI extends JFrame
 //		btnHard.setEnabled(false);
 
 		/*
-		 * Button Easy creates an instance of SelectedLevelGUI allowing the GUI to
-		 * pop up
+		 * Button Easy creates an instance of SelectedLevelGUI allowing the GUI to pop
+		 * up
 		 */
 		btnEasy.addActionListener(new ActionListener()
 		{
@@ -144,6 +147,8 @@ public class LevelGUI extends JFrame
 				 * Create an instance of selectedLevel, this allows the SelectedLevelGUI to pop
 				 * up when new is selected in the start menu
 				 */
+				//Update button SwitchVariable in SelectedLevelGUI that controls switch statement for button names
+				SelectedLevelGUI.switchVariable = 1;
 				SelectedLevelGUI selectedLevel = new SelectedLevelGUI();
 				selectedLevel.setVisible(true);
 
@@ -156,22 +161,25 @@ public class LevelGUI extends JFrame
 				dispose();
 			}
 		});
-		
+
 		/*
-		 * Button Medium creates an instance of SelectedLevelGUI allowing the GUI to
-		 * pop up
+		 * Button Medium creates an instance of SelectedLevelGUI allowing the GUI to pop
+		 * up
 		 */
 		btnMedium.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
+				
 				/**
 				 * Create an instance of selectedLevel, this allows the SelectedLevelGUI to pop
 				 * up when new is selected in the start menu
 				 */
+				
+				//Update button SwitchVariable in SelectedLevelGUI that controls switch statement for button names
+				SelectedLevelGUI.switchVariable = 2;
 				SelectedLevelGUI selectedLevel = new SelectedLevelGUI();
-				selectedLevel.setVisible(true);
-//				selectedLevel
+				selectedLevel.setVisible(true);			
 
 				/**
 				 * setVisible without object name (newGame.setVisible...) will use Class
@@ -180,12 +188,13 @@ public class LevelGUI extends JFrame
 				 */
 				setVisible(false);
 				dispose();
+
 			}
 		});
-		
+
 		/*
-		 * Button Hard creates an instance of SelectedLevelGUI allowing the GUI to
-		 * pop up
+		 * Button Hard creates an instance of SelectedLevelGUI allowing the GUI to pop
+		 * up
 		 */
 		btnHard.addActionListener(new ActionListener()
 		{
@@ -195,6 +204,8 @@ public class LevelGUI extends JFrame
 				 * Create an instance of selectedLevel, this allows the SelectedLevelGUI to pop
 				 * up when new is selected in the start menu
 				 */
+				//Update button SwitchVariable in SelectedLevelGUI that controls switch statement for button names
+				SelectedLevelGUI.switchVariable = 3;
 				SelectedLevelGUI selectedLevel = new SelectedLevelGUI();
 				selectedLevel.setVisible(true);
 
