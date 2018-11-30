@@ -99,19 +99,15 @@ public class LoadGameGUI extends JFrame
 		JPanel pnlSelectGames = new JPanel();
 		pnlSavedGames.add(pnlSelectGames);
 		pnlSelectGames.setLayout(new GridLayout(1, 0, 0, 0));
-
-		/*
-		 * takes in player name? need to somehow link name from New Game jFrame
-		 */
-		System.out.println("Type Name: ");
-		Scanner sc = new Scanner(System.in);
-		String saveName = sc.nextLine();
-
+		
 //		JRadioButton rdbtnNewRadioButton = new JRadioButton("New radio button");
 //		pnlSelectGames.add(rdbtnNewRadioButton);
+		
+		
+		//Make NewGameGUI object to input txtBoxName
+		NewGameGUI ng = new NewGameGUI();
+		JScrollPane scrollPane = new JScrollPane(addGameBtn(pnlSelectGames, ng.getTxtBoxName()));	
 
-		// this may need to be edited
-		JScrollPane scrollPane = new JScrollPane(addGameBtn(pnlSelectGames, saveName));
 		pnlSelectGames.add(scrollPane);
 
 		JButton btnLoad = new JButton("LOAD");

@@ -36,7 +36,7 @@ public class StartMenuGUI extends JFrame
 	{
 		EventQueue.invokeLater(new Runnable()
 		{
-			public void run()	
+			public void run()
 			{
 				try
 				{
@@ -54,8 +54,7 @@ public class StartMenuGUI extends JFrame
 	/**
 	 * Create the frame.
 	 */
-	public StartMenuGUI()
-	{
+	public StartMenuGUI() {
 		setTitle("Unlock A Box - Start Menu");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 878, 579);
@@ -93,46 +92,57 @@ public class StartMenuGUI extends JFrame
 		lblTitle.setIcon(new ImageIcon(StartMenuGUI.class.getResource("/images/UnlockABoxLogo.png")));
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		pnlStartMenu.add(lblTitle);
-		
-		Help help = new Help("Directions", 
-				"Unlock A Box is a game of brain teasers and logic puzzles.\r\n" + 
-				"\r\n" + 
-				"Creating a New Game!\r\n" + 
-				"Create a new game by selecting New Game\r\n" + 
-				"Choose a difficulty level with the dropdown menu\r\n" + 
-				"Input your username\r\n" + 
-				"Click Play\r\n" + 
-				"\r\n" + 
-				"Loading a Saved Game!\r\n" + 
-				"Load a new game by selecting Load Game\r\n" + 
-				"Select your saved game by your Username\r\n" + 
-				"Click Load\r\n" + 
-				"\r\n" + 
-				"In Game!\r\n" + 
-				"You will be presented with a challenge that includes a puzzle that needs to be solved\r\n" + 
-				"Once you have solved all three challenges the level will be complete");
-						
-						JPanel pnlStartButtons = new JPanel();
-						contentPane.add(pnlStartButtons, BorderLayout.SOUTH);
-						pnlStartButtons.setLayout(new GridLayout(3, 1, 0, 0));
-						
-								JButton btnNewGame = new JButton("New Game");
-								pnlStartButtons.add(btnNewGame);
-								btnNewGame.setFocusable(false);
-								
-										JButton btnLoadGame = new JButton("Load Game");
-										pnlStartButtons.add(btnLoadGame);
-										btnLoadGame.setFocusable(false);
-										
-										JButton btnHelp = new JButton("Help");
-										pnlStartButtons.add(btnHelp);
-										btnHelp.addActionListener(new ActionListener() {
-											public void actionPerformed(ActionEvent e) 
-											{
-												help.setVisible(true);
-											}
-										});
-										btnHelp.setFocusable(false);
+
+		Help help = new Help("Directions", "Unlock A Box is a game of brain teasers and logic puzzles.\r\n" + "\r\n"
+				+ "Creating a New Game!\r\n" + "Create a new game by selecting New Game\r\n"
+				+ "Choose a difficulty level with the dropdown menu\r\n" + "Input your username\r\n" + "Click Play\r\n"
+				+ "\r\n" + "Loading a Saved Game!\r\n" + "Load a new game by selecting Load Game\r\n"
+				+ "Select your saved game by your Username\r\n" + "Click Load\r\n" + "\r\n" + "In Game!\r\n"
+				+ "You will be presented with a challenge that includes a puzzle that needs to be solved\r\n"
+				+ "Once you have solved all three challenges the level will be complete");
+
+		JPanel pnlStartButtons = new JPanel();
+		contentPane.add(pnlStartButtons, BorderLayout.SOUTH);
+		pnlStartButtons.setLayout(new GridLayout(3, 1, 0, 0));
+
+		JButton btnNewGame = new JButton("New Game");
+		pnlStartButtons.add(btnNewGame);
+		btnNewGame.setFocusable(false);
+
+		JButton btnLoadGame = new JButton("Load Game");
+		btnLoadGame.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				/**
+				 * Create an instance of newGame, this allows the NewGameGUI to pop up when new
+				 * is selected in the start menu
+				 */
+				LoadGameGUI loadGame = new LoadGameGUI();
+				loadGame.setVisible(true);
+
+				/**
+				 * setVisible without object name (newGame.setVisible...) will use Class
+				 * (StartMenuGUI.java) that the command was coded in dispose() will free up
+				 * memory in program by removing the instantiation of StartMenuGUI
+				 */
+				setVisible(false);
+				dispose();
+			}
+		});
+		pnlStartButtons.add(btnLoadGame);
+		btnLoadGame.setFocusable(false);
+
+		JButton btnHelp = new JButton("Help");
+		pnlStartButtons.add(btnHelp);
+		btnHelp.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				help.setVisible(true);
+			}
+		});
+		btnHelp.setFocusable(false);
 
 		btnNewGame.addActionListener(new ActionListener()
 		{

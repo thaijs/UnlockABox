@@ -27,11 +27,11 @@ public class NewGameGUI extends JFrame
 	private JPanel contentPane;
 	private JTextField txtBoxName;
 
-	public JTextField getTxtBoxName()
+	public String getTxtBoxName()
 	{
-		return txtBoxName;
+		return txtBoxName.getText();
 	}
-	
+
 	/**
 	 * Launch the application.
 	 */
@@ -56,8 +56,7 @@ public class NewGameGUI extends JFrame
 	/**
 	 * Create the frame.
 	 */
-	public NewGameGUI()
-	{
+	public NewGameGUI() {
 		setTitle("Unlock A Box - New Game");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 530);
@@ -76,6 +75,26 @@ public class NewGameGUI extends JFrame
 		menuBar.add(mnMenu);
 
 		JMenuItem mntmLoadGame = new JMenuItem("Load Game");
+		mntmLoadGame.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				/**
+				 * Create an instance of newGame, this allows the NewGameGUI to pop up when new
+				 * is selected in the start menu
+				 */
+				LoadGameGUI loadGame = new LoadGameGUI();
+				loadGame.setVisible(true);
+
+				/**
+				 * setVisible without object name (newGame.setVisible...) will use Class
+				 * (StartMenuGUI.java) that the command was coded in dispose() will free up
+				 * memory in program by removing the instantiation of StartMenuGUI
+				 */
+				setVisible(false);
+				dispose();
+			}
+		});
 		mnMenu.add(mntmLoadGame);
 
 //		JMenuItem mntmHelp = new JMenuItem("Help");
@@ -86,8 +105,8 @@ public class NewGameGUI extends JFrame
 
 		JMenuItem mntmExit = new JMenuItem("Exit");
 		mnMenu.add(mntmExit);
-		
-		//Select Back and you will go back to the Start Menu
+
+		// Select Back and you will go back to the Start Menu
 		mntmBack.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -98,7 +117,7 @@ public class NewGameGUI extends JFrame
 				dispose();
 			}
 		});
-		
+
 		JPanel pnlNewGame = new JPanel();
 		contentPane.add(pnlNewGame, BorderLayout.CENTER);
 		pnlNewGame.setLayout(new GridLayout(3, 0, 0, 0));
@@ -132,11 +151,12 @@ public class NewGameGUI extends JFrame
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				String name = txtBoxName.getText(); 
-				String filename ="src/SavedGames/" + name + ".txt";
-				
+				String name = txtBoxName.getText();
+				String filename = "src/SavedGames/" + name + ".txt";
+
 				/**
-				 * So these are placements to input the Main easy med hard arrays because our constructor hates us
+				 * So these are placements to input the Main easy med hard arrays because our
+				 * constructor hates us
 				 */
 				ArrayList<Challenge> chal = new ArrayList<>();
 				chal.addAll(Main.easyChallenges);
@@ -144,13 +164,13 @@ public class NewGameGUI extends JFrame
 				chal2.addAll(Main.mediumChallenges);
 				ArrayList<Challenge> chal3 = new ArrayList<>();
 				chal3.addAll(Main.hardChallenges);
-				
-				//using the class to write stuff
+
+				// using the class to write stuff
 				SaveLoad sl = new SaveLoad(chal, chal2, chal3);
 				sl.printNameToFile(filename, name);
-				
-				//input popup saying SAVED UR DANG FILE
-				
+
+				// input popup saying SAVED UR DANG FILE
+
 				/**
 				 * Create an instance of newLevel, this allows the LevelGUI to pop up when new
 				 * is selected in the start menu
