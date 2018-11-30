@@ -49,8 +49,7 @@ public class SelectedLevelGUI extends JFrame
 	/**
 	 * Create the frame.
 	 */
-	public SelectedLevelGUI()
-	{
+	public SelectedLevelGUI() {
 		setTitle("Unlock A Box - Selected Level");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 530);
@@ -68,21 +67,33 @@ public class SelectedLevelGUI extends JFrame
 		JMenu mnMenu = new JMenu("Menu");
 		menuBar.add(mnMenu);
 
-		JMenuItem mntmNewGame = new JMenuItem("Save Game");
-		mnMenu.add(mntmNewGame);
+		JMenuItem mntmSaveGame = new JMenuItem("Save Game");
+		mnMenu.add(mntmSaveGame);
 
 		JMenuItem mntmLoadGame = new JMenuItem("Load Game");
+		mntmLoadGame.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				/**
+				 * Create an instance of newGame, this allows the NewGameGUI to pop up when new
+				 * is selected in the start menu
+				 */
+				LoadGameGUI loadGame = new LoadGameGUI();
+				loadGame.setVisible(true);
+
+				/**
+				 * setVisible without object name (newGame.setVisible...) will use Class
+				 * (StartMenuGUI.java) that the command was coded in dispose() will free up
+				 * memory in program by removing the instantiation of StartMenuGUI
+				 */
+				setVisible(false);
+				dispose();
+			}
+		});
 		mnMenu.add(mntmLoadGame);
 
-//		JMenuItem mntmHelp = new JMenuItem("Help");
-//		mnMenu.add(mntmHelp);
-
 		JMenuItem mntmBack = new JMenuItem("Back");
-		mnMenu.add(mntmBack);
-
-		JMenuItem mntmExit = new JMenuItem("Exit");
-		mnMenu.add(mntmExit);
-
 		// Select Back and you will go back to the Level Menu
 		mntmBack.addActionListener(new ActionListener()
 		{
@@ -94,6 +105,10 @@ public class SelectedLevelGUI extends JFrame
 				dispose();
 			}
 		});
+		mnMenu.add(mntmBack);
+
+		JMenuItem mntmExit = new JMenuItem("Exit");
+		mnMenu.add(mntmExit);
 
 		JPanel pnlLevelSelected = new JPanel();
 		contentPane.add(pnlLevelSelected, BorderLayout.CENTER);
@@ -132,18 +147,16 @@ public class SelectedLevelGUI extends JFrame
 		}
 
 		String name = "";
-		JButton btnChallenge1 = new JButton(challengeButton1); // will update to ArrayList later and make name dynamic
+		JButton btnChallenge1 = new JButton(challengeButton1);
 		btnChallenge1.setFocusable(false);
 		pnlChallenges.add(btnChallenge1);
 
 		JButton btnChallenge2 = new JButton(challengeButton2);
 		btnChallenge2.setFocusable(false);
-		btnChallenge2.setEnabled(false);
 		pnlChallenges.add(btnChallenge2);
 
 		JButton btnChallenge3 = new JButton(challengeButton3);
 		btnChallenge3.setFocusable(false);
-		btnChallenge3.setEnabled(false);
 		pnlChallenges.add(btnChallenge3);
 
 		/*

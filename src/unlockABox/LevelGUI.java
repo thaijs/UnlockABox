@@ -72,20 +72,28 @@ public class LevelGUI extends JFrame
 		JMenuItem mntmSaveGame = new JMenuItem("Save Game");
 		mnMenu.add(mntmSaveGame);
 
-		JMenuItem mntmNewGame = new JMenuItem("Load Game");
-		mnMenu.add(mntmNewGame);
+		JMenuItem mntmLoadGame = new JMenuItem("Load Game");
+		mntmLoadGame.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				/**
+				 * Create an instance of newGame, this allows the NewGameGUI to pop up when new
+				 * is selected in the start menu
+				 */
+				LoadGameGUI loadGame = new LoadGameGUI();
+				loadGame.setVisible(true);
 
-//		JMenuItem mntmHelp = new JMenuItem("Help");
-//		mnMenu.add(mntmHelp);
-
-		JMenuItem mntmEasy = new JMenuItem("Easy Levels");
-		mnMenu.add(mntmEasy);
-
-		JMenuItem mntmMedium = new JMenuItem("Medium Levels");
-		mnMenu.add(mntmMedium);
-
-		JMenuItem mntmHard = new JMenuItem("Hard Levels");
-		mnMenu.add(mntmHard);
+				/**
+				 * setVisible without object name (newGame.setVisible...) will use Class
+				 * (StartMenuGUI.java) that the command was coded in dispose() will free up
+				 * memory in program by removing the instantiation of StartMenuGUI
+				 */
+				setVisible(false);
+				dispose();
+			}
+		});
+		mnMenu.add(mntmLoadGame);
 
 		JMenuItem mntmBack = new JMenuItem("Back");
 		mnMenu.add(mntmBack);
@@ -108,15 +116,6 @@ public class LevelGUI extends JFrame
 		JPanel pnlLevels = new JPanel();
 		contentPane.add(pnlLevels, BorderLayout.CENTER);
 		pnlLevels.setLayout(new FlowLayout(FlowLayout.CENTER, 60, 170));
-		// JLabel lblDifficultyTitle = new JLabel("Selected Difficulty
-		// (Easy...Medium...Hard...)");
-		// lblDifficultyTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		// //This needs to somehow get the selected difficulty from user selection
-		// pnlLevels.add(lblDifficultyTitle);
-
-		// JPanel pnlGameLevels = new JPanel();
-		// pnlLevels.add(pnlGameLevels);
-		// pnlGameLevels.setLayout(new GridLayout(0, 3, 0, 0));
 
 		JButton btnEasy = new JButton("Easy");
 		pnlLevels.add(btnEasy);
@@ -252,3 +251,24 @@ public class LevelGUI extends JFrame
 //btnLvl9.setFocusable(false);
 //btnLvl9.setEnabled(false);
 //pnlGameLevels.add(btnLvl9);
+
+//LABELS WHAT DIFFICULTY WHEN WE ADD MORE LEVELS
+// JLabel lblDifficultyTitle = new JLabel("Selected Difficulty
+// (Easy...Medium...Hard...)");
+// lblDifficultyTitle.setHorizontalAlignment(SwingConstants.CENTER);
+// //This needs to somehow get the selected difficulty from user selection
+// pnlLevels.add(lblDifficultyTitle);
+
+// JPanel pnlGameLevels = new JPanel();
+// pnlLevels.add(pnlGameLevels);
+// pnlGameLevels.setLayout(new GridLayout(0, 3, 0, 0));
+
+//MENU ITEMS
+//JMenuItem mntmEasy = new JMenuItem("Easy Levels");
+//mnMenu.add(mntmEasy);
+//
+//JMenuItem mntmMedium = new JMenuItem("Medium Levels");
+//mnMenu.add(mntmMedium);
+//
+//JMenuItem mntmHard = new JMenuItem("Hard Levels");
+//mnMenu.add(mntmHard);

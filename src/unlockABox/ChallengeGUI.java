@@ -85,10 +85,30 @@ public class ChallengeGUI extends JFrame
 		JMenu mnMenu = new JMenu("Menu");
 		menuBar.add(mnMenu);
 
-		JMenuItem mntmNewGame = new JMenuItem("Save Game");
-		mnMenu.add(mntmNewGame);
+		JMenuItem mntmSaveGame = new JMenuItem("Save Game");
+		mnMenu.add(mntmSaveGame);
 
 		JMenuItem mntmLoadGame = new JMenuItem("Load Game");
+		mntmLoadGame.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				/**
+				 * Create an instance of newGame, this allows the NewGameGUI to pop up when new
+				 * is selected in the start menu
+				 */
+				LoadGameGUI loadGame = new LoadGameGUI();
+				loadGame.setVisible(true);
+
+				/**
+				 * setVisible without object name (newGame.setVisible...) will use Class
+				 * (StartMenuGUI.java) that the command was coded in dispose() will free up
+				 * memory in program by removing the instantiation of StartMenuGUI
+				 */
+				setVisible(false);
+				dispose();
+			}
+		});
 		mnMenu.add(mntmLoadGame);
 
 		Help help = new Help("Extra Help", lock.getHint());
@@ -103,11 +123,6 @@ public class ChallengeGUI extends JFrame
 		mnMenu.add(mntmHelp);
 
 		JMenuItem mntmBack = new JMenuItem("Back");
-		mnMenu.add(mntmBack);
-
-		JMenuItem mntmExit = new JMenuItem("Exit");
-		mnMenu.add(mntmExit);
-
 		// Select Back and you will go back to the Selected Level Menu
 		mntmBack.addActionListener(new ActionListener()
 		{
@@ -119,13 +134,13 @@ public class ChallengeGUI extends JFrame
 				dispose();
 			}
 		});
+		mnMenu.add(mntmBack);
+
+		JMenuItem mntmExit = new JMenuItem("Exit");
+		mnMenu.add(mntmExit);
 
 		JPanel pnlAnswer = new JPanel();
 		contentPane.add(pnlAnswer, BorderLayout.SOUTH);
-
-		/*
-		 * These will be hardcoded and changed according to the challenge
-		 */
 
 		JPanel pnlChallenge = new JPanel();
 		contentPane.add(pnlChallenge, BorderLayout.CENTER);
