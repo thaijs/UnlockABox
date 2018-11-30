@@ -39,7 +39,7 @@ public class SaveLoad
 			{
 				if (el.getAnswerFlag() == true)
 				{
-					writer.println(el.getName());
+					writer.println(el.getName() + " is completed!");
 				}
 				el.getName();
 			}		
