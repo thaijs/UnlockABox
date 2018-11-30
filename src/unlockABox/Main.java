@@ -22,35 +22,69 @@ public class Main
 		StartMenuGUI startMenu = new StartMenuGUI();
 		startMenu.setVisible(true);
 		
-		//creating a medium challenge
-		mediumChallenges.add(new Challenge("Lock", 
+		
+		
+		
+		
+		
+		
+		
+		/* ADDING CHALLENGES */
+		
+		//creating medium challenges
+		Challenge lockPuzzle = new Challenge("Lock", 
 				"Can you crack the unlock code for the lock using the 5 clues below?\r\n" +
 						"Clue #1: 682 – One number is correct and well placed\r\n" + 
 						"    Clue #2: 614 – One number is correct but wrongly placed\r\n" + 
 						"    Clue #3: 206 – Two numbers are correct but both are wrongly placed\r\n" + 
 						"    Clue #4: 738 – None of the numbers are correct\r\n" + 
 						"    Clue #5: 780 – One number is correct but wrongly placed",
-						"The code is 042",
+						"042",
 						false,
 						"/images/challengePic.png",
-						"Use Clues, we ain't tellin'"));
+						"Use Clues, we ain't tellin'");
 
 		
-		mediumChallenges.get(0).setAnswerFlag(true);
+		Challenge tPuzzle = new Challenge("T Puzzle",
+				"What doesn't belong?",
+				"t",
+				false,
+				"image",
+				"Look closely at all objects on screen");
 		
-		//creating easy challenge
-//		Challenge heavierChallenge = new Challenge("Heavier", 
-//				"Which is heavier: 1 lb of Feathers or 1 lb of Rocks?", 
-//				"Neither", 
-//				false, 
-//				"image", 
-//				"Think of how much each item weighs");
+		//creating easy challenges
+		Challenge heavierChallenge = new Challenge("Heavier", 
+				"Which is heavier: 1 lb of Feathers or 1 lb of Rocks?", 
+				"neither", 
+				false, 
+				"image", 
+				"Think of how much each item weighs");
 		
-//		Challenge = new Challenge();
+		Challenge soapRiddle = new Challenge("Covers Your Body",
+				"I'm not clothes but I cover your body;\r\n" + 
+				"\r\n" + 
+				"The more I'm used, the thinner I grow.\r\n" + 
+				"\r\n" + 
+				"What am I?",
+				"bar of soap",
+				false,
+				"image",
+				"What would you use in the shower");		
 		
+		//creating hard challenges
+		Challenge hairRiddle = new Challenge("I Accompy Life",
+				"I move very slowly at an imperceptible rate, although I take my time, I am never late. I accompany life, and survive past demise, I am viewed with esteem in many women's eyes.\r\n" + 
+				"\r\n" + 
+				"What am I?",
+				"hair",
+				false,
+				"image",
+				"Synonymous with Style");
+				
 		//this is just adding the challenges we've created to the Lists
-		//create a method to do this maybe?
-//		Collections.addAll(easyChallenges, heavierChallenge);
+		Collections.addAll(easyChallenges, heavierChallenge, soapRiddle);	
+		Collections.addAll(hardChallenges, hairRiddle);
+		
 		
 		//SERIALIZATION STUFF
 //		//to get the player name
