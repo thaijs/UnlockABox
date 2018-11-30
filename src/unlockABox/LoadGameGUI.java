@@ -29,9 +29,8 @@ public class LoadGameGUI extends JFrame
 
 	private JPanel contentPane;
 	private final static ButtonGroup buttonGroup = new ButtonGroup();
-	private String filePath = "Bartholowem.txt";
+	private static String filePath = "/SavedGames/Bartholowem.txt";
 	List<String> challengeList = new ArrayList<String>();
-	Scanner sc = new Scanner(filePath);
 
 	/**
 	 * Launch the application.
@@ -99,14 +98,13 @@ public class LoadGameGUI extends JFrame
 		JPanel pnlSelectGames = new JPanel();
 		pnlSavedGames.add(pnlSelectGames);
 		pnlSelectGames.setLayout(new GridLayout(1, 0, 0, 0));
-		
+
 //		JRadioButton rdbtnNewRadioButton = new JRadioButton("New radio button");
 //		pnlSelectGames.add(rdbtnNewRadioButton);
-		
-		
-		//Make NewGameGUI object to input txtBoxName
+
+		// Make NewGameGUI object to input txtBoxName
 		NewGameGUI ng = new NewGameGUI();
-		JScrollPane scrollPane = new JScrollPane(addGameBtn(pnlSelectGames, ng.getTxtBoxName()));	
+		JScrollPane scrollPane = new JScrollPane(addGameBtn(pnlSelectGames, ng.getTxtBoxName()));
 
 		pnlSelectGames.add(scrollPane);
 
@@ -118,16 +116,21 @@ public class LoadGameGUI extends JFrame
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				while (sc.hasNextLine())
+				try (Scanner sc = new Scanner(LoadGameGUI.class.getResourceAsStream(filePath)))
 				{
-					challengeList.add(sc.nextLine());
-				}
-				
-				for (String el : challengeList)
-				{
-					System.out.println(el);
+
+					while (sc.hasNextLine())
+					{
+						challengeList.add(sc.nextLine());
+					}
+
+					for (String el : challengeList)
+					{
+						System.out.println(el);
+					}
 				}
 			}
+
 		});
 	}
 
