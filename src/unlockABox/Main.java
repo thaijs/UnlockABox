@@ -13,9 +13,9 @@ public class Main
 {
 	//maybe create a list for each difficulty that includes the 3 challenges
 	//would we use LinkedList or ArrayList?
-	static List<Challenge> easyChallenges = new ArrayList<>();
-	static List<Challenge> mediumChallenges = new ArrayList<>();
-	static List<Challenge> hardChallenges = new ArrayList<>();
+	static ArrayList<Challenge> easyChallenges = new ArrayList<>();
+	static ArrayList<Challenge> mediumChallenges = new ArrayList<>();
+	static ArrayList<Challenge> hardChallenges = new ArrayList<>();
 	
 	public static void main(String[] args)
 	{
@@ -23,8 +23,7 @@ public class Main
 		startMenu.setVisible(true);
 		
 		//creating a medium challenge
-		Challenge lockChallenge;
-		mediumChallenges.add(lockChallenge = new Challenge("Lock", 
+		mediumChallenges.add(new Challenge("Lock", 
 				"Can you crack the unlock code for the lock using the 5 clues below?\r\n" +
 						"Clue #1: 682 – One number is correct and well placed\r\n" + 
 						"    Clue #2: 614 – One number is correct but wrongly placed\r\n" + 
@@ -35,48 +34,30 @@ public class Main
 						false,
 						"/images/challengePic.png",
 						"Use Clues, we ain't tellin'"));
+
 		
+		mediumChallenges.get(0).setAnswerFlag(true);
 		
+		//creating easy challenge
+//		Challenge heavierChallenge = new Challenge("Heavier", 
+//				"Which is heavier: 1 lb of Feathers or 1 lb of Rocks?", 
+//				"Neither", 
+//				false, 
+//				"image", 
+//				"Think of how much each item weighs");
+		
+//		Challenge = new Challenge();
 		
 		//this is just adding the challenges we've created to the Lists
 		//create a method to do this maybe?
-//		Collections.addAll(easyChallenges, new Challenge("Heavier", 
-//				"Which is heavier: 1 lb of Feathers or 1 lb of Rocks?", 
-//				"Feathers", 
-//				false, 
-//				"image", 
-//				"Think of how much each item weighs"), 
-//				new Challenge());
-
-	}
-	//we probably need methods to get information from the challenges
-
-	/**
-	 * This will get the challenge difficulty for other jframes to use
-	 * Specifically this is for SelectedLevelGUI so that it can display which difficulty was selected
-	 * @return
-	 */
-//	public static String getChalDifficulty()
-//	{
+//		Collections.addAll(easyChallenges, heavierChallenge);
+		
+		//SERIALIZATION STUFF
+//		//to get the player name
+//		NewGameGUI ng = new NewGameGUI();
 //		
-//	}
-	
-	/**
-	 * This get's the name for the specified challenge
-	 * @param challenges
-	 * @return
-	 */
-	public static String getChalName(List<Challenge> challenges)
-	{
-		return ((Component) challenges).getName();
-	}
-	
-	/**
-	 * This is allowing us to get the easy challenges list
-	 * @return
-	 */
-	public static List<Challenge> getEasyChallenge()
-	{
-		return easyChallenges;
-	}
+//		SerializeDeserialize sd = new SerializeDeserialize(easyChallenges, mediumChallenges, hardChallenges);
+//		sd.serialize(mediumChallenges, ng.getTxtBoxName().toString());
+
+	}	
 }

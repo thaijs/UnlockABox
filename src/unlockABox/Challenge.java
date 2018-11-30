@@ -107,6 +107,25 @@ public class Challenge
 	}
 	
 	/**
+	 * Get's AnswerFlag
+	 * @return
+	 */
+	public boolean getAnswerFlag()
+	{
+		return answerFlag;
+	}
+	
+	/**
+	 * Get's AnswerFlag
+	 * @return 
+	 * @return
+	 */
+	public void setAnswerFlag(boolean answerFlag)
+	{
+		this.answerFlag = answerFlag;
+	}
+	
+	/**
 	 * To format output for Challenge if needed
 	 */
 	public String toString()

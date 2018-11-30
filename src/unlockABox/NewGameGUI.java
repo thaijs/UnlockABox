@@ -16,6 +16,9 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class NewGameGUI extends JFrame
@@ -24,6 +27,11 @@ public class NewGameGUI extends JFrame
 	private JPanel contentPane;
 	private JTextField txtBoxName;
 
+	public JTextField getTxtBoxName()
+	{
+		return txtBoxName;
+	}
+	
 	/**
 	 * Launch the application.
 	 */
@@ -90,7 +98,7 @@ public class NewGameGUI extends JFrame
 				dispose();
 			}
 		});
-
+		
 		JPanel pnlNewGame = new JPanel();
 		contentPane.add(pnlNewGame, BorderLayout.CENTER);
 		pnlNewGame.setLayout(new GridLayout(3, 0, 0, 0));
@@ -124,6 +132,25 @@ public class NewGameGUI extends JFrame
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
+				String name = txtBoxName.getText(); 
+				String filename ="src/SavedGames/" + name + ".txt";
+				
+				/**
+				 * So these are placements to input the Main easy med hard arrays because our constructor hates us
+				 */
+				ArrayList<Challenge> chal = new ArrayList<>();
+				chal.addAll(Main.easyChallenges);
+				ArrayList<Challenge> chal2 = new ArrayList<>();
+				chal2.addAll(Main.mediumChallenges);
+				ArrayList<Challenge> chal3 = new ArrayList<>();
+				chal3.addAll(Main.hardChallenges);
+				
+				//using the class to write stuff
+				SaveLoad sl = new SaveLoad(chal, chal2, chal3);
+				sl.printNameToFile(filename, name);
+				
+				//input popup saying SAVED UR DANG FILE
+				
 				/**
 				 * Create an instance of newLevel, this allows the LevelGUI to pop up when new
 				 * is selected in the start menu
