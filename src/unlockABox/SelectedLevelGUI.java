@@ -108,6 +108,13 @@ public class SelectedLevelGUI extends JFrame
 		mnMenu.add(mntmBack);
 
 		JMenuItem mntmExit = new JMenuItem("Exit");
+		mntmExit.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				dispose();
+			}
+		});
 		mnMenu.add(mntmExit);
 
 		JPanel pnlLevelSelected = new JPanel();
@@ -164,6 +171,56 @@ public class SelectedLevelGUI extends JFrame
 		 * pop up
 		 */
 		btnChallenge1.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				/**
+				 * Create an instance of challenge, this allows the ChallengeGUI to pop up when
+				 * new is selected in the start menu
+				 */
+				ChallengeGUI challenge = new ChallengeGUI();
+				challenge.setVisible(true);
+
+				/**
+				 * setVisible without object name (newGame.setVisible...) will use Class
+				 * (StartMenuGUI.java) that the command was coded in dispose() will free up
+				 * memory in program by removing the instantiation of StartMenuGUI
+				 */
+				setVisible(false);
+				dispose();
+			}
+		});
+		
+		/*
+		 * Button Challenge 1 creates an instance of ChallengeGUI allowing the GUI to
+		 * pop up
+		 */
+		btnChallenge2.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				/**
+				 * Create an instance of challenge, this allows the ChallengeGUI to pop up when
+				 * new is selected in the start menu
+				 */
+				ChallengeGUI challenge = new ChallengeGUI();
+				challenge.setVisible(true);
+
+				/**
+				 * setVisible without object name (newGame.setVisible...) will use Class
+				 * (StartMenuGUI.java) that the command was coded in dispose() will free up
+				 * memory in program by removing the instantiation of StartMenuGUI
+				 */
+				setVisible(false);
+				dispose();
+			}
+		});
+		
+		/*
+		 * Button Challenge 1 creates an instance of ChallengeGUI allowing the GUI to
+		 * pop up
+		 */
+		btnChallenge3.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
 			{

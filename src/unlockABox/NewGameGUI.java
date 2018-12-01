@@ -97,15 +97,7 @@ public class NewGameGUI extends JFrame
 		});
 		mnMenu.add(mntmLoadGame);
 
-//		JMenuItem mntmHelp = new JMenuItem("Help");
-//		mnMenu.add(mntmHelp);
-
 		JMenuItem mntmBack = new JMenuItem("Back");
-		mnMenu.add(mntmBack);
-
-		JMenuItem mntmExit = new JMenuItem("Exit");
-		mnMenu.add(mntmExit);
-
 		// Select Back and you will go back to the Start Menu
 		mntmBack.addActionListener(new ActionListener()
 		{
@@ -117,21 +109,21 @@ public class NewGameGUI extends JFrame
 				dispose();
 			}
 		});
+		mnMenu.add(mntmBack);
+
+		JMenuItem mntmExit = new JMenuItem("Exit");
+		mntmExit.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				dispose();
+			}
+		});
+		mnMenu.add(mntmExit);
 
 		JPanel pnlNewGame = new JPanel();
 		contentPane.add(pnlNewGame, BorderLayout.CENTER);
 		pnlNewGame.setLayout(new GridLayout(3, 0, 0, 0));
-
-		JPanel pnlDifficulty = new JPanel();
-		pnlNewGame.add(pnlDifficulty);
-
-		JLabel lblSelectDifficulty = new JLabel("Select Difficulty");
-		pnlDifficulty.add(lblSelectDifficulty);
-
-		JComboBox comboBoxDifficulty = new JComboBox();
-		comboBoxDifficulty.setModel(new DefaultComboBoxModel(new String[]
-		{ "Select One", "Easy", "Medium", "Hard" }));
-		pnlDifficulty.add(comboBoxDifficulty);
 
 		JPanel pnlName = new JPanel();
 		pnlNewGame.add(pnlName);
@@ -151,42 +143,66 @@ public class NewGameGUI extends JFrame
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				String name = txtBoxName.getText();
-				String filename = "src/SavedGames/" + name + ".txt";
+				if (txtBoxName.getText().isEmpty())
+				{
+					LevelGUI level = new LevelGUI();
+					level.setVisible(true);
+					setVisible(false);
+					dispose();
+				} else
+				{
 
-				/**
-				 * So these are placements to input the Main easy med hard arrays because our
-				 * constructor hates us
-				 */
-				ArrayList<Challenge> chal = new ArrayList<>();
-				chal.addAll(Main.easyChallenges);
-				ArrayList<Challenge> chal2 = new ArrayList<>();
-				chal2.addAll(Main.mediumChallenges);
-				ArrayList<Challenge> chal3 = new ArrayList<>();
-				chal3.addAll(Main.hardChallenges);
+					String name = txtBoxName.getText();
+					String filename = "src/SavedGames/" + name + ".txt";
 
-				// using the class to write stuff
-				SaveLoad sl = new SaveLoad(chal, chal2, chal3);
-				sl.printNameToFile(filename, name);
+					/**
+					 * So these are placements to input the Main easy med hard arrays because our
+					 * constructor hates us
+					 */
+					ArrayList<Challenge> chal = new ArrayList<>();
+					chal.addAll(Main.easyChallenges);
+					ArrayList<Challenge> chal2 = new ArrayList<>();
+					chal2.addAll(Main.mediumChallenges);
+					ArrayList<Challenge> chal3 = new ArrayList<>();
+					chal3.addAll(Main.hardChallenges);
 
-				// input popup saying SAVED UR DANG FILE
+					// using the class to write stuff
+					SaveLoad sl = new SaveLoad(chal, chal2, chal3);
+					sl.printNameToFile(filename, name);
 
-				/**
-				 * Create an instance of newLevel, this allows the LevelGUI to pop up when new
-				 * is selected in the start menu
-				 */
-				LevelGUI newLevel = new LevelGUI();
-				newLevel.setVisible(true);
+					// input popup saying SAVED UR DANG FILE
 
-				/**
-				 * setVisible without object name (newGame.setVisible...) will use Class
-				 * (StartMenuGUI.java) that the command was coded in dispose() will free up
-				 * memory in program by removing the instantiation of StartMenuGUI
-				 */
-				setVisible(false);
-				dispose();
+					/**
+					 * Create an instance of newLevel, this allows the LevelGUI to pop up when new
+					 * is selected in the start menu
+					 */
+					LevelGUI newLevel = new LevelGUI();
+					newLevel.setVisible(true);
+
+					/**
+					 * setVisible without object name (newGame.setVisible...) will use Class
+					 * (StartMenuGUI.java) that the command was coded in dispose() will free up
+					 * memory in program by removing the instantiation of StartMenuGUI
+					 */
+					setVisible(false);
+					dispose();
+				}
 			}
 		});
 	}
 
 }
+
+//STUFF TO ADD LATER
+
+//THIS IS FOR WHEN WE NEED TO SELECT DIFFICULTY
+//JPanel pnlDifficulty = new JPanel();
+//pnlNewGame.add(pnlDifficulty);
+//
+//JLabel lblSelectDifficulty = new JLabel("Select Difficulty");
+//pnlDifficulty.add(lblSelectDifficulty);
+//
+//JComboBox comboBoxDifficulty = new JComboBox();
+//comboBoxDifficulty.setModel(new DefaultComboBoxModel(new String[]
+//{ "Select One", "Easy", "Medium", "Hard" }));
+//pnlDifficulty.add(comboBoxDifficulty);
