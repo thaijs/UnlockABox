@@ -96,22 +96,28 @@ public class LevelGUI extends JFrame
 		mnMenu.add(mntmLoadGame);
 
 		JMenuItem mntmBack = new JMenuItem("Back");
-		mnMenu.add(mntmBack);
-
-		JMenuItem mntmExit = new JMenuItem("Exit");
-		mnMenu.add(mntmExit);
-
 		// Select Back and you will go back to the New Game Menu
 		mntmBack.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				NewGameGUI ngFrame1 = new NewGameGUI();
-				ngFrame1.setVisible(true);
+				StartMenuGUI smFrame1 = new StartMenuGUI();
+				smFrame1.setVisible(true);
 				setVisible(false);
 				dispose();
 			}
 		});
+		mnMenu.add(mntmBack);
+
+		JMenuItem mntmExit = new JMenuItem("Exit");
+		mntmExit.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				dispose();
+			}
+		});
+		mnMenu.add(mntmExit);
 
 		JPanel pnlLevels = new JPanel();
 		contentPane.add(pnlLevels, BorderLayout.CENTER);

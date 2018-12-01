@@ -26,10 +26,8 @@ import java.awt.event.ActionEvent;
 
 public class LoadGameGUI extends JFrame
 {
-
+	static JPanel pnlGameButtons;
 	private JPanel contentPane;
-	private final static ButtonGroup buttonGroup = new ButtonGroup();
-	private static String filePath = "/SavedGames/Bartholowem.txt";
 	List<String> challengeList = new ArrayList<String>();
 
 	/**
@@ -50,14 +48,13 @@ public class LoadGameGUI extends JFrame
 					e.printStackTrace();
 				}
 			}
-		});
+		});		
 	}
 
 	/**
 	 * Create the frame.
 	 */
-	public LoadGameGUI()
-	{
+	public LoadGameGUI() {
 		setTitle("Unlock A Box - Load Game");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 530);
@@ -76,62 +73,87 @@ public class LoadGameGUI extends JFrame
 		menuBar.add(mnMenu);
 
 		JMenuItem mntmNewGame = new JMenuItem("New Game");
+		mntmNewGame.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				/**
+				 * Create an instance of newGame, this allows the NewGameGUI to pop up when new
+				 * is selected in the start menu
+				 */
+				NewGameGUI newGame = new NewGameGUI();
+				newGame.setVisible(true);
+
+				/**
+				 * setVisible without object name (newGame.setVisible...) will use Class
+				 * (StartMenuGUI.java) that the command was coded in dispose() will free up
+				 * memory in program by removing the instantiation of StartMenuGUI
+				 */
+				setVisible(false);
+				dispose();
+			}
+		});
 		mnMenu.add(mntmNewGame);
 
 		JMenuItem mntmHelp = new JMenuItem("Help");
+		// Creates help menu
+		Help help = new Help("Loading a Game", "To load a game click on your Game Name then click Load");
+		mntmHelp.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				help.setVisible(true);
+			}
+		});
 		mnMenu.add(mntmHelp);
 
 		JMenuItem mntmBack = new JMenuItem("Back");
+		// Select Back and you will go back to the Start Menu
+		mntmBack.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				StartMenuGUI smFrame1 = new StartMenuGUI();
+				smFrame1.setVisible(true);
+				setVisible(false);
+				dispose();
+			}
+		});
 		mnMenu.add(mntmBack);
 
 		JMenuItem mntmExit = new JMenuItem("Exit");
+		mntmExit.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				dispose();
+			}
+		});
 		mnMenu.add(mntmExit);
 
 		JPanel pnlSavedGames = new JPanel();
 		contentPane.add(pnlSavedGames, BorderLayout.CENTER);
-		pnlSavedGames.setLayout(new GridLayout(3, 0, 0, 0));
+		pnlSavedGames.setLayout(new GridLayout(0, 1, 0, 0));
 
 		JLabel lblSavedGames = new JLabel("Saved Games");
 		lblSavedGames.setHorizontalAlignment(SwingConstants.CENTER);
 		pnlSavedGames.add(lblSavedGames);
 
-		JPanel pnlSelectGames = new JPanel();
-		pnlSavedGames.add(pnlSelectGames);
-		pnlSelectGames.setLayout(new GridLayout(1, 0, 0, 0));
+		JPanel pnlFiller = new JPanel();
+		pnlSavedGames.add(pnlFiller);
 
-//		JRadioButton rdbtnNewRadioButton = new JRadioButton("New radio button");
-//		pnlSelectGames.add(rdbtnNewRadioButton);
+		JScrollPane scrollPane = new JScrollPane();
+		pnlSavedGames.add(scrollPane);
 
-		// Make NewGameGUI object to input txtBoxName
-		NewGameGUI ng = new NewGameGUI();
-		JScrollPane scrollPane = new JScrollPane(addGameBtn(pnlSelectGames, ng.getTxtBoxName()));
+		pnlGameButtons = new JPanel();
+		scrollPane.setViewportView(pnlGameButtons);
+		// created buttons, added buttons to arraylist in main
+		mergeArrayLists(addGameBtn(pnlGameButtons, Main.gameList), Main.buttonList);
+		//added event handlers and returns name of game clicked
+		String buttonClickedPath = createEventHandlers(Main.buttonList) + ".txt";
+		//read files and merge to array
+		readingFileForChallenges("src/SavedGames/" + buttonClickedPath, Main.challengeList);
 
-		pnlSelectGames.add(scrollPane);
-
-		JButton btnLoad = new JButton("LOAD");
-
-		btnLoad.setFocusable(false);
-		pnlSavedGames.add(btnLoad);
-		btnLoad.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent arg0)
-			{
-				try (Scanner sc = new Scanner(LoadGameGUI.class.getResourceAsStream(filePath)))
-				{
-
-					while (sc.hasNextLine())
-					{
-						challengeList.add(sc.nextLine());
-					}
-
-					for (String el : challengeList)
-					{
-						System.out.println(el);
-					}
-				}
-			}
-
-		});
 	}
 
 	/**
@@ -142,11 +164,71 @@ public class LoadGameGUI extends JFrame
 	 * @param saveName
 	 * @return
 	 */
-	public static Component addGameBtn(JPanel panel, String saveName)
+	public static ArrayList<JButton> addGameBtn(JPanel panel, ArrayList<String> saveName)
 	{
-		JRadioButton radioButton = new JRadioButton("Game: " + saveName);
-		buttonGroup.add(radioButton);
-		return panel.add(radioButton);
+		ArrayList<JButton> buttons = new ArrayList<>();
+		int count = saveName.size();
+		pnlGameButtons.setLayout(new GridLayout(count, 0, 0, 0));
+		for (String el : saveName)
+		{
+			JButton button = new JButton(el.substring(0, el.length() - 4));
+			button.setFocusable(false);
+			pnlGameButtons.add(button);
+			buttons.add(button);
+		}
+		return buttons;
 	}
 
+	static String name = "";
+	/**
+	 * 
+	 * @param buttons
+	 * @return
+	 */
+	public static String createEventHandlers(ArrayList<JButton> buttons)
+	{
+		for (JButton el: buttons)
+		{
+			el.addActionListener(new ActionListener()
+			{
+				public  void actionPerformed(ActionEvent e)
+				{
+					name = el.getText();
+				}
+			});
+		}		
+		return name;
+	}
+
+	/**
+	 * Merges buttons created in addGameBtn method into arraylist to be instantiated
+	 * in main method
+	 * 
+	 * @param input
+	 * @param output
+	 */
+	public static void mergeArrayLists(ArrayList<JButton> input, ArrayList<JButton> output)
+	{
+		for (JButton el : input)
+		{
+			output.add(el);
+		}
+	}
+	
+	/**
+	 * Reads txt files for challenges that are completed
+	 * @param filePath
+	 * @param challengeList
+	 */
+	public static void readingFileForChallenges(String filePath, ArrayList<String> challengeList)
+	{
+		try (Scanner sc = new Scanner(LoadGameGUI.class.getResourceAsStream(filePath)))
+		{
+
+			while (sc.hasNextLine())
+			{
+				challengeList.add(sc.nextLine());
+			}
+		}
+	}
 }
