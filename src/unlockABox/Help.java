@@ -11,9 +11,13 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import java.awt.Font;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
 
+/**
+ * Final Project: Unlock A Box Game
+ * @author Tyler Smith
+ * @author Brad Rohbock
+ *CS 1410
+ */
 public class Help extends JFrame
 {
 
@@ -39,18 +43,29 @@ public class Help extends JFrame
 			}
 		});
 	}
-	
+
+	// Public variables to be used to create the frame
 	String title;
 	String infoText;
 
 	/**
 	 * Create the frame.
 	 */
-	public Help(String title, String infoText) {
-		
+	public Help(String title, String infoText) 
+	{
+		createFrame(title, infoText);
+	}
+
+	/**
+	 * Creates the frame for Help Menu
+	 * @param title
+	 * @param infoText
+	 */
+	private void createFrame(String title, String infoText)
+	{
 		this.title = title;
 		this.infoText = infoText;
-		
+
 		setTitle("Help");
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -59,12 +74,12 @@ public class Help extends JFrame
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
+
 		JLabel lblHelpTitle = new JLabel("Help");
 		lblHelpTitle.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblHelpTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(lblHelpTitle, BorderLayout.NORTH);
-		
+
 		JTextArea textAreaInfoText = new JTextArea();
 		textAreaInfoText.setText(infoText);
 		textAreaInfoText.setLineWrap(true);
@@ -72,9 +87,5 @@ public class Help extends JFrame
 		textAreaInfoText.setEditable(false);
 		textAreaInfoText.setFont(new Font("Monospaced", Font.BOLD, 20));
 		contentPane.add(textAreaInfoText, BorderLayout.CENTER);
-		
-		
-		
 	}
-
 }

@@ -1,7 +1,6 @@
 package unlockABox;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -17,13 +16,17 @@ import java.util.Scanner;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
-import javax.swing.ButtonGroup;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * Final Project: Unlock A Box Game
+ * @author Tyler Smith
+ * @author Brad Rohbock
+ *CS 1410
+ */
 public class LoadGameGUI extends JFrame
 {
 	static JPanel pnlGameButtons;
@@ -73,6 +76,7 @@ public class LoadGameGUI extends JFrame
 		menuBar.add(mnMenu);
 
 		JMenuItem mntmNewGame = new JMenuItem("New Game");
+		//Allows to open NewGameGUI
 		mntmNewGame.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
@@ -97,7 +101,7 @@ public class LoadGameGUI extends JFrame
 
 		JMenuItem mntmHelp = new JMenuItem("Help");
 		// Creates help menu
-		Help help = new Help("Loading a Game", "To load a game click on your Game Name then click Load");
+		Help help = new Help("Loading a Game", "To load a game click on your Game Name");
 		mntmHelp.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -108,7 +112,7 @@ public class LoadGameGUI extends JFrame
 		mnMenu.add(mntmHelp);
 
 		JMenuItem mntmBack = new JMenuItem("Back");
-		// Select Back and you will go back to the Start Menu
+		//Selecting Back will go to StartMenuGUI
 		mntmBack.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -122,6 +126,7 @@ public class LoadGameGUI extends JFrame
 		mnMenu.add(mntmBack);
 
 		JMenuItem mntmExit = new JMenuItem("Exit");
+		//Allows to close the program
 		mntmExit.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -153,13 +158,11 @@ public class LoadGameGUI extends JFrame
 		String buttonClickedPath = createEventHandlers(Main.buttonList) + ".txt";
 		//read files and merge to array
 		readingFileForChallenges("src/SavedGames/" + buttonClickedPath, Main.challengeList);
-
 	}
 
 	/**
-	 * Creates a new radio button Takes Name of player and applies to new radio
+	 * Creates a new button Takes Name of player and applies to new
 	 * button saveName should be file path
-	 * 
 	 * @param panel
 	 * @param saveName
 	 * @return
@@ -179,9 +182,10 @@ public class LoadGameGUI extends JFrame
 		return buttons;
 	}
 
+	//sets a static string to be used in createEventHandlers method
 	static String name = "";
 	/**
-	 * 
+	 * Creates an event handler for each saved game
 	 * @param buttons
 	 * @return
 	 */
@@ -224,7 +228,6 @@ public class LoadGameGUI extends JFrame
 	{
 		try (Scanner sc = new Scanner(LoadGameGUI.class.getResourceAsStream(filePath)))
 		{
-
 			while (sc.hasNextLine())
 			{
 				challengeList.add(sc.nextLine());

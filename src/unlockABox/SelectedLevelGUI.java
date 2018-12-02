@@ -16,6 +16,12 @@ import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * Final Project: Unlock A Box Game
+ * @author Tyler Smith
+ * @author Brad Rohbock
+ *CS 1410
+ */
 public class SelectedLevelGUI extends JFrame
 {
 	static int switchVariable;
@@ -67,25 +73,27 @@ public class SelectedLevelGUI extends JFrame
 		JMenu mnMenu = new JMenu("Menu");
 		menuBar.add(mnMenu);
 
+		//THIS NEEDS TO BE FIGURED OUT
 		JMenuItem mntmSaveGame = new JMenuItem("Save Game");
 		mnMenu.add(mntmSaveGame);
 
 		JMenuItem mntmLoadGame = new JMenuItem("Load Game");
+		//Allow to open LoadGameGUI
 		mntmLoadGame.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
 				/**
-				 * Create an instance of newGame, this allows the NewGameGUI to pop up when new
+				 * Create an instance of loadGame, this allows the LoadGameGUI to pop up when new
 				 * is selected in the start menu
 				 */
 				LoadGameGUI loadGame = new LoadGameGUI();
 				loadGame.setVisible(true);
 
 				/**
-				 * setVisible without object name (newGame.setVisible...) will use Class
-				 * (StartMenuGUI.java) that the command was coded in dispose() will free up
-				 * memory in program by removing the instantiation of StartMenuGUI
+				 * setVisible without object name (ie newGame.setVisible...) will use Class
+				 * (ie StartMenuGUI.java) that the command was coded in dispose() will free up
+				 * memory in program by removing the instantiation of LevelGUI
 				 */
 				setVisible(false);
 				dispose();
@@ -94,7 +102,7 @@ public class SelectedLevelGUI extends JFrame
 		mnMenu.add(mntmLoadGame);
 
 		JMenuItem mntmBack = new JMenuItem("Back");
-		// Select Back and you will go back to the Level Menu
+		//Selecting Back will go to LevelGUI
 		mntmBack.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -108,6 +116,7 @@ public class SelectedLevelGUI extends JFrame
 		mnMenu.add(mntmBack);
 
 		JMenuItem mntmExit = new JMenuItem("Exit");
+		//Allows to close program
 		mntmExit.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -131,8 +140,7 @@ public class SelectedLevelGUI extends JFrame
 		pnlLevelSelected.add(pnlChallenges);
 
 		/*
-		 * For final project, need to make these buttons images with label on top Need
-		 * to get Main class to input for btn's
+		 * Switch case to direct user input to correct challenge groups
 		 */
 		switch (switchVariable)
 		{
@@ -182,9 +190,9 @@ public class SelectedLevelGUI extends JFrame
 				challenge.setVisible(true);
 
 				/**
-				 * setVisible without object name (newGame.setVisible...) will use Class
-				 * (StartMenuGUI.java) that the command was coded in dispose() will free up
-				 * memory in program by removing the instantiation of StartMenuGUI
+				 * setVisible without object name (ie newGame.setVisible...) will use Class
+				 * (ie StartMenuGUI.java) that the command was coded in dispose() will free up
+				 * memory in program by removing the instantiation of LevelGUI
 				 */
 				setVisible(false);
 				dispose();
@@ -192,7 +200,7 @@ public class SelectedLevelGUI extends JFrame
 		});
 		
 		/*
-		 * Button Challenge 1 creates an instance of ChallengeGUI allowing the GUI to
+		 * Button Challenge 2 creates an instance of ChallengeGUI allowing the GUI to
 		 * pop up
 		 */
 		btnChallenge2.addActionListener(new ActionListener()
@@ -207,9 +215,9 @@ public class SelectedLevelGUI extends JFrame
 				challenge.setVisible(true);
 
 				/**
-				 * setVisible without object name (newGame.setVisible...) will use Class
-				 * (StartMenuGUI.java) that the command was coded in dispose() will free up
-				 * memory in program by removing the instantiation of StartMenuGUI
+				 * setVisible without object name (ie newGame.setVisible...) will use Class
+				 * (ie StartMenuGUI.java) that the command was coded in dispose() will free up
+				 * memory in program by removing the instantiation of LevelGUI
 				 */
 				setVisible(false);
 				dispose();
@@ -217,7 +225,7 @@ public class SelectedLevelGUI extends JFrame
 		});
 		
 		/*
-		 * Button Challenge 1 creates an instance of ChallengeGUI allowing the GUI to
+		 * Button Challenge 3 creates an instance of ChallengeGUI allowing the GUI to
 		 * pop up
 		 */
 		btnChallenge3.addActionListener(new ActionListener()
@@ -232,9 +240,9 @@ public class SelectedLevelGUI extends JFrame
 				challenge.setVisible(true);
 
 				/**
-				 * setVisible without object name (newGame.setVisible...) will use Class
-				 * (StartMenuGUI.java) that the command was coded in dispose() will free up
-				 * memory in program by removing the instantiation of StartMenuGUI
+				 * setVisible without object name (ie newGame.setVisible...) will use Class
+				 * (ie StartMenuGUI.java) that the command was coded in dispose() will free up
+				 * memory in program by removing the instantiation of LevelGUI
 				 */
 				setVisible(false);
 				dispose();
@@ -242,9 +250,10 @@ public class SelectedLevelGUI extends JFrame
 		});
 	}
 
+	
+	//ARE WE EVEN USING THIS?
 	/**
 	 * Allows Main class to hard code name for challenge
-	 * 
 	 * @param name
 	 * @return
 	 */

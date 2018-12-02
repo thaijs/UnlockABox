@@ -2,6 +2,12 @@ package unlockABox;
 
 import java.util.ArrayList;
 
+/**
+ * Final Project: Unlock A Box Game
+ * @author Tyler Smith
+ * @author Brad Rohbock
+ *CS 1410
+ */
 public class Level
 {
 	String levelName;
