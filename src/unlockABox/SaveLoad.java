@@ -1,15 +1,16 @@
 package unlockABox;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Final Project: Unlock A Box Game
+ * @author Tyler Smith
+ * @author Brad Rohbock
+ *CS 1410
+ */
 public class SaveLoad
 {
 	private ArrayList<Challenge> easy;

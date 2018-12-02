@@ -8,6 +8,12 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Final Project: Unlock A Box Game
+ * @author Tyler Smith
+ * @author Brad Rohbock
+ *CS 1410
+ */
 public class SerializeDeserialize
 {
 	 //to get the player name
@@ -32,7 +38,7 @@ public class SerializeDeserialize
 	
 	public void serialize(List<Challenge> all, String loadName)
 	{
-		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ng.getTxtBoxName().toString())))
+		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ng.getTxtBoxName())))
 		{
 			oos.writeObject(all);
 			//for testing purposes
@@ -48,7 +54,7 @@ public class SerializeDeserialize
 	{
 		List<Challenge> chal = null;
 		
-		try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ng.getTxtBoxName().toString())))
+		try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ng.getTxtBoxName())))
 		{
 			chal = (List<Challenge>) ois.readObject();
 		} 
