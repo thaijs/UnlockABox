@@ -49,8 +49,7 @@ public class SaveLoad
 		catch (FileNotFoundException e)
 		{
 			e.printStackTrace();
-		}
-		
+		}	
 		return confirmFlag;
 	}
 }

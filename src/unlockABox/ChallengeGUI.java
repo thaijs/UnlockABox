@@ -21,18 +21,22 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 /**
  * Final Project: Unlock A Box Game
  * @author Tyler Smith
- * @author Brad Rohbock
- *CS 1410
+ * @author Brad Rohbock 
+ * CS 1410
  */
 public class ChallengeGUI extends JFrame
 {
 
 	private JPanel contentPane;
 	private JTextField txtBoxGetUserInput;
+	private int arraySelected = SelectedLevelGUI.switchVariable;
+	private int indexArray;
+	private int indexChallenge = SelectedLevelGUI.challengeSelected;
 
 	/**
 	 * Launch the application.
@@ -58,20 +62,7 @@ public class ChallengeGUI extends JFrame
 	/**
 	 * Create the frame.
 	 */
-	public ChallengeGUI()
-	{
-		/**
-		 * Hardcoding challenge object for testing until we figure out
-		 */
-		Challenge lock = new Challenge("Lock",
-				"Can you crack the unlock code for the lock using the 5 clues below?\r\n"
-						+ "Clue #1: 682 – One number is correct and well placed\r\n"
-						+ "Clue #2: 614 – One number is correct but wrongly placed\r\n"
-						+ "Clue #3: 206 – Two numbers are correct but both are wrongly placed\r\n"
-						+ "Clue #4: 738 – None of the numbers are correct\r\n"
-						+ "Clue #5: 780 – One number is correct but wrongly placed",
-				"042", false, "/images/challengePic.png", "Use Clues, we ain't tellin'");
-
+	public ChallengeGUI() {
 		setTitle("Unlock A Box - Challenge");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 530);
@@ -89,27 +80,35 @@ public class ChallengeGUI extends JFrame
 
 		JMenu mnMenu = new JMenu("Menu");
 		menuBar.add(mnMenu);
-
-		//THIS NEEDS TO BE FIGURED OUT
+		
+		//saves the game
 		JMenuItem mntmSaveGame = new JMenuItem("Save Game");
+		mntmSaveGame.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				SaveLoad sl = new SaveLoad(Main.easyChallenges, Main.mediumChallenges, Main.hardChallenges);
+				sl.printNameToFile("src/SavedGames/" + , loadName);
+			}
+		});
 		mnMenu.add(mntmSaveGame);
 
 		JMenuItem mntmLoadGame = new JMenuItem("Load Game");
-		//Allows to open LoadGameGUI
+		// Allows to open LoadGameGUI
 		mntmLoadGame.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
 				/**
-				 * Create an instance of loadGame, this allows the LoadGameGUI to pop up when new
-				 * is selected in the start menu
+				 * Create an instance of loadGame, this allows the LoadGameGUI to pop up when
+				 * new is selected in the start menu
 				 */
 				LoadGameGUI loadGame = new LoadGameGUI();
 				loadGame.setVisible(true);
 
 				/**
-				 * setVisible without object name (ie newGame.setVisible...) will use Class
-				 * (ie StartMenuGUI.java) that the command was coded in dispose() will free up
+				 * setVisible without object name (ie newGame.setVisible...) will use Class (ie
+				 * StartMenuGUI.java) that the command was coded in dispose() will free up
 				 * memory in program by removing the instantiation of LevelGUI
 				 */
 				setVisible(false);
@@ -118,7 +117,25 @@ public class ChallengeGUI extends JFrame
 		});
 		mnMenu.add(mntmLoadGame);
 
-		Help help = new Help("Extra Help", lock.getHint());
+		/**
+		 * Switch to go through arrays and use user selected for ChallengeGUI
+		 */
+		switch (arraySelected)
+		{
+		case 1:
+			indexArray = 0;
+			break;
+		case 2:
+			indexArray = 1;
+			break;
+		case 3:
+			indexArray = 2;
+			break;
+		}
+
+		// Creates a hint for user
+		Help help = new Help("Extra Help",
+				((Challenge) Main.challengeArrays.get(indexArray).get(indexChallenge)).getHint());
 		JMenuItem mntmHelp = new JMenuItem("Help");
 		mntmHelp.addActionListener(new ActionListener()
 		{
@@ -144,7 +161,7 @@ public class ChallengeGUI extends JFrame
 		mnMenu.add(mntmBack);
 
 		JMenuItem mntmExit = new JMenuItem("Exit");
-		//Allows to close program
+		// Allows to close program
 		mntmExit.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -169,16 +186,18 @@ public class ChallengeGUI extends JFrame
 		pnlInfo.add(pnlQuestionDescription);
 
 		JTextArea textArea = new JTextArea();
-		textArea.setText(lock.getDescription());
+		textArea.setText(((Challenge) Main.challengeArrays.get(indexArray).get(indexChallenge)).getDescription());
 		textArea.setWrapStyleWord(true);
 		textArea.setEditable(false);
+		textArea.setBackground(null);
 		pnlQuestionDescription.add(textArea);
 
 		JLabel lblPicture = new JLabel("");
 		lblPicture.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblPicture.setVerticalTextPosition(SwingConstants.BOTTOM);
-		lblPicture.setIcon(new ImageIcon(Challenge.class.getResource(lock.getImage())));
-		lblPicture.setText("where we got this image");
+		lblPicture.setIcon(new ImageIcon(Challenge.class
+				.getResource(((Challenge) Main.challengeArrays.get(indexArray).get(indexChallenge)).getImage())));
+//		lblPicture.setText("");
 		lblPicture.setHorizontalAlignment(SwingConstants.CENTER);
 		pnlChallenge.add(lblPicture);
 
@@ -187,7 +206,7 @@ public class ChallengeGUI extends JFrame
 		pnlInfo.add(pnlTxtSubmit);
 		txtBoxGetUserInput = new JTextField();
 		pnlTxtSubmit.add(txtBoxGetUserInput);
-		
+
 		txtBoxGetUserInput.setActionCommand("");
 		txtBoxGetUserInput.setName("");
 		txtBoxGetUserInput.setToolTipText("Input Answer");
@@ -226,7 +245,7 @@ public class ChallengeGUI extends JFrame
 			public void actionPerformed(ActionEvent arg0)
 			{
 				// variable that takes in correct Answer
-				String answer = lock.getAnswer();
+				String answer = ((Challenge) Main.challengeArrays.get(indexArray).get(indexChallenge)).getAnswer();
 				boolean flag = true;
 
 				if (txtBoxGetUserInput.getText().equals(answer))
@@ -246,19 +265,21 @@ public class ChallengeGUI extends JFrame
 				}
 			}
 		});
-		
+
 		/**
-		 * When user clicks on textbox after inputting data, textbox will clear previous input
-		 * Picture will default to original image for the challenge
+		 * When user clicks on textbox after inputting data, textbox will clear previous
+		 * input Picture will default to original image for the challenge
 		 * Incorrect/Correct text will default to no text
 		 */
-		txtBoxGetUserInput.addMouseListener(new MouseAdapter() {
+		txtBoxGetUserInput.addMouseListener(new MouseAdapter()
+		{
 			@Override
-			public void mouseClicked(MouseEvent arg0) 
+			public void mouseClicked(MouseEvent arg0)
 			{
 				txtBoxGetUserInput.setText("");
 				valid.setText("");
-				lblPicture.setIcon(new ImageIcon(Challenge.class.getResource(lock.getImage())));
+				lblPicture.setIcon(new ImageIcon(Challenge.class.getResource(
+						((Challenge) Main.challengeArrays.get(indexArray).get(indexChallenge)).getImage())));
 				pnlChallenge.add(lblPicture);
 			}
 		});

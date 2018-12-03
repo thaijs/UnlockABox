@@ -15,6 +15,7 @@ import java.awt.GridLayout;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.FlowLayout;
 
 /**
  * Final Project: Unlock A Box Game
@@ -28,6 +29,7 @@ public class SelectedLevelGUI extends JFrame
 	static String challengeButton1;
 	static String challengeButton2;
 	static String challengeButton3;
+	static int challengeSelected;
 
 	private JPanel contentPane;
 
@@ -73,8 +75,16 @@ public class SelectedLevelGUI extends JFrame
 		JMenu mnMenu = new JMenu("Menu");
 		menuBar.add(mnMenu);
 
-		//THIS NEEDS TO BE FIGURED OUT
+		//saves the game
 		JMenuItem mntmSaveGame = new JMenuItem("Save Game");
+		mntmSaveGame.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				SaveLoad sl = new SaveLoad(Main.easyChallenges, Main.mediumChallenges, Main.hardChallenges);
+				sl.printNameToFile("src/SavedGames/" + , loadName);
+			}
+		});
 		mnMenu.add(mntmSaveGame);
 
 		JMenuItem mntmLoadGame = new JMenuItem("Load Game");
@@ -128,16 +138,6 @@ public class SelectedLevelGUI extends JFrame
 
 		JPanel pnlLevelSelected = new JPanel();
 		contentPane.add(pnlLevelSelected, BorderLayout.CENTER);
-		pnlLevelSelected.setLayout(new GridLayout(2, 0, 0, 0));
-
-		// somehow get the challenge name and input into this label
-		JLabel lblLevelSelected = new JLabel("Level that was selected");
-		lblLevelSelected.setHorizontalAlignment(SwingConstants.CENTER);
-		// Needs to get which level was selected (1,2,3,4...)
-		pnlLevelSelected.add(lblLevelSelected);
-
-		JPanel pnlChallenges = new JPanel();
-		pnlLevelSelected.add(pnlChallenges);
 
 		/*
 		 * Switch case to direct user input to correct challenge groups
@@ -162,17 +162,60 @@ public class SelectedLevelGUI extends JFrame
 		}
 
 		String name = "";
+		pnlLevelSelected.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 200));
 		JButton btnChallenge1 = new JButton(challengeButton1);
+		pnlLevelSelected.add(btnChallenge1);
 		btnChallenge1.setFocusable(false);
-		pnlChallenges.add(btnChallenge1);
+		
+				JButton btnChallenge2 = new JButton(challengeButton2);
+				pnlLevelSelected.add(btnChallenge2);
+				btnChallenge2.setFocusable(false);
+				
+						JButton btnChallenge3 = new JButton(challengeButton3);
+						pnlLevelSelected.add(btnChallenge3);
+						btnChallenge3.setFocusable(false);
+						btnChallenge3.addActionListener(new ActionListener()
+						{
+							public void actionPerformed(ActionEvent e)
+							{
+								challengeSelected = 2;
+								/**
+								 * Create an instance of challenge, this allows the ChallengeGUI to pop up when
+								 * new is selected in the start menu
+								 */
+								ChallengeGUI challenge = new ChallengeGUI();
+								challenge.setVisible(true);
 
-		JButton btnChallenge2 = new JButton(challengeButton2);
-		btnChallenge2.setFocusable(false);
-		pnlChallenges.add(btnChallenge2);
+								/**
+								 * setVisible without object name (ie newGame.setVisible...) will use Class
+								 * (ie StartMenuGUI.java) that the command was coded in dispose() will free up
+								 * memory in program by removing the instantiation of LevelGUI
+								 */
+								setVisible(false);
+								dispose();
+							}
+						});
+				btnChallenge2.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						challengeSelected = 1;
+						/**
+						 * Create an instance of challenge, this allows the ChallengeGUI to pop up when
+						 * new is selected in the start menu
+						 */
+						ChallengeGUI challenge = new ChallengeGUI();
+						challenge.setVisible(true);
 
-		JButton btnChallenge3 = new JButton(challengeButton3);
-		btnChallenge3.setFocusable(false);
-		pnlChallenges.add(btnChallenge3);
+						/**
+						 * setVisible without object name (ie newGame.setVisible...) will use Class
+						 * (ie StartMenuGUI.java) that the command was coded in dispose() will free up
+						 * memory in program by removing the instantiation of LevelGUI
+						 */
+						setVisible(false);
+						dispose();
+					}
+				});
 
 		/*
 		 * Button Challenge 1 creates an instance of ChallengeGUI allowing the GUI to
@@ -182,6 +225,7 @@ public class SelectedLevelGUI extends JFrame
 		{
 			public void actionPerformed(ActionEvent e)
 			{
+				challengeSelected = 0;
 				/**
 				 * Create an instance of challenge, this allows the ChallengeGUI to pop up when
 				 * new is selected in the start menu
@@ -203,63 +247,19 @@ public class SelectedLevelGUI extends JFrame
 		 * Button Challenge 2 creates an instance of ChallengeGUI allowing the GUI to
 		 * pop up
 		 */
-		btnChallenge2.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e)
-			{
-				/**
-				 * Create an instance of challenge, this allows the ChallengeGUI to pop up when
-				 * new is selected in the start menu
-				 */
-				ChallengeGUI challenge = new ChallengeGUI();
-				challenge.setVisible(true);
-
-				/**
-				 * setVisible without object name (ie newGame.setVisible...) will use Class
-				 * (ie StartMenuGUI.java) that the command was coded in dispose() will free up
-				 * memory in program by removing the instantiation of LevelGUI
-				 */
-				setVisible(false);
-				dispose();
-			}
-		});
 		
 		/*
 		 * Button Challenge 3 creates an instance of ChallengeGUI allowing the GUI to
 		 * pop up
 		 */
-		btnChallenge3.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e)
-			{
-				/**
-				 * Create an instance of challenge, this allows the ChallengeGUI to pop up when
-				 * new is selected in the start menu
-				 */
-				ChallengeGUI challenge = new ChallengeGUI();
-				challenge.setVisible(true);
-
-				/**
-				 * setVisible without object name (ie newGame.setVisible...) will use Class
-				 * (ie StartMenuGUI.java) that the command was coded in dispose() will free up
-				 * memory in program by removing the instantiation of LevelGUI
-				 */
-				setVisible(false);
-				dispose();
-			}
-		});
 	}
-
-	
-	//ARE WE EVEN USING THIS?
-	/**
-	 * Allows Main class to hard code name for challenge
-	 * @param name
-	 * @return
-	 */
-	public String nameForChallenge(String name)
-	{
-		return name;
-	}
-
 }
+
+
+//CODE THAT WILL BE LOOKED AT IN LATER VERSIONS
+
+//// somehow get the challenge name and input into this label
+//JLabel lblLevelSelected = new JLabel("Level that was selected");
+//lblLevelSelected.setHorizontalAlignment(SwingConstants.CENTER);
+//// Needs to get which level was selected (1,2,3,4...)
+//pnlLevelSelected.add(lblLevelSelected);
