@@ -18,10 +18,12 @@ import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
+import java.util.Scanner;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+
 
 /**
  * Final Project: Unlock A Box Game
@@ -80,6 +82,8 @@ public class ChallengeGUI extends JFrame
 
 		JMenu mnMenu = new JMenu("Menu");
 		menuBar.add(mnMenu);
+
+
 		
 		//saves the game
 		JMenuItem mntmSaveGame = new JMenuItem("Save Game");
@@ -100,6 +104,9 @@ public class ChallengeGUI extends JFrame
 			public void actionPerformed(ActionEvent arg0)
 			{
 				/**
+				 * Create an instance of newGame, this allows the NewGameGUI to pop up when new
+				 * is selected in the start menu
+
 				 * Create an instance of loadGame, this allows the LoadGameGUI to pop up when
 				 * new is selected in the start menu
 				 */
@@ -107,6 +114,9 @@ public class ChallengeGUI extends JFrame
 				loadGame.setVisible(true);
 
 				/**
+				 * setVisible without object name (newGame.setVisible...) will use Class
+				 * (StartMenuGUI.java) that the command was coded in dispose() will free up
+				 * memory in program by removing the instantiation of StartMenuGUI
 				 * setVisible without object name (ie newGame.setVisible...) will use Class (ie
 				 * StartMenuGUI.java) that the command was coded in dispose() will free up
 				 * memory in program by removing the instantiation of LevelGUI
@@ -161,6 +171,7 @@ public class ChallengeGUI extends JFrame
 		mnMenu.add(mntmBack);
 
 		JMenuItem mntmExit = new JMenuItem("Exit");
+
 		// Allows to close program
 		mntmExit.addActionListener(new ActionListener()
 		{
@@ -222,22 +233,6 @@ public class ChallengeGUI extends JFrame
 
 		JButton btnBack = new JButton("Back");
 		btnBack.setEnabled(false);
-		// Back button will return to SelectedLevelGUI when clicked
-		btnBack.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent arg0)
-			{
-				SelectedLevelGUI selectedGUI = new SelectedLevelGUI();
-				selectedGUI.setVisible(true);
-				/**
-				 * setVisible without object name (newGame.setVisible...) will use Class
-				 * (StartMenuGUI.java) that the command was coded in dispose() will free up
-				 * memory in program by removing the instantiation of StartMenuGUI
-				 */
-				setVisible(false);
-				dispose();
-			}
-		});
 		pnlTxtSubmit.add(btnBack);
 
 		btnSubmit.addActionListener(new ActionListener()
@@ -266,6 +261,23 @@ public class ChallengeGUI extends JFrame
 			}
 		});
 
+		// Back button will return to SelectedLevelGUI when clicked
+		btnBack.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				SelectedLevelGUI selectedGUI = new SelectedLevelGUI();
+				selectedGUI.setVisible(true);
+				/**
+				 * setVisible without object name (newGame.setVisible...) will use Class
+				 * (StartMenuGUI.java) that the command was coded in dispose() will free up
+				 * memory in program by removing the instantiation of StartMenuGUI
+				 */
+				setVisible(false);
+				dispose();
+			}
+		});
+
 		/**
 		 * When user clicks on textbox after inputting data, textbox will clear previous
 		 * input Picture will default to original image for the challenge
@@ -283,5 +295,6 @@ public class ChallengeGUI extends JFrame
 				pnlChallenge.add(lblPicture);
 			}
 		});
+
 	}
 }
