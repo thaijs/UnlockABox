@@ -69,7 +69,16 @@ public class LevelGUI extends JFrame
 		JMenu mnMenu = new JMenu("Menu");
 		menuBar.add(mnMenu);
 
+		//saves the game
 		JMenuItem mntmSaveGame = new JMenuItem("Save Game");
+		mntmSaveGame.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				SaveLoad sl = new SaveLoad(Main.easyChallenges, Main.mediumChallenges, Main.hardChallenges);
+				sl.printNameToFile("src/SavedGames/" + , loadName);
+			}
+		});
 		mnMenu.add(mntmSaveGame);
 
 		JMenuItem mntmLoadGame = new JMenuItem("Load Game");
